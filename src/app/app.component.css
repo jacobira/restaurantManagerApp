@@ -1,0 +1,15 @@
+.banner {
+  height: 75px;
+  width: 100%;
+  background-color: lightblue;
+  display: flex;
+  box-shadow: 0 1px 5px black;
+}
+.banner .logo {
+  height: 65px;
+  width: 33px;
+  margin-top: 5px;
+  margin-left: 15px;
+  background-image: url(media/Efficient.png);
+  background-size: cover;
+}

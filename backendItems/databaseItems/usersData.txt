@@ -1,0 +1,14 @@
+{
+    users:[
+        {
+            id: 1234,
+            name: {first: "Developer", last: "One"},
+            mngr: true
+        },
+        {
+            id: 4321,
+            name: {first: "Developer", last: "Two"},
+            mngr: true
+        }
+    ]
+}

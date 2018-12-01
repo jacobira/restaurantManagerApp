@@ -1,0 +1,68 @@
+{
+    burgers:{
+        items:[
+            {
+                name: "Classic Burger",
+                price: 6.99,
+                build: ["Bun","Mayo","Mustard","Ketchup","Beef Patty","Cheese","Pickles","Tomatoes","Lettuce"]
+            },
+            {
+                name "Deluxe Burger",
+                price: 7.99,
+                build: ["Bun","Mayo","Mustard","Ketchup","2 Beef Pattys","2 Cheese","Pickles","Tomatoes","Lettuce"]
+            }
+        ]
+    },
+    sides:{
+        items:[
+            {
+                name: "Macaroni & Cheese",
+                price: 3.99,
+                build: ["2 Scoops"]
+            },
+            {
+                name: "Pasta Salad",
+                price: 2.99,
+                build: ["2 Scoops"]
+            }
+        ]
+    },
+    salads:{
+        items:[
+            {
+                name: "Chef Salad",
+                price: 4.99,
+                build: ["Green Leaf Lettuce","Iceberg Lettuce", "Carrots","Cherry Tomatoes","Cucumbers","Sliced Hard-boiled Egg","Shredded Cheddar Cheese","Choice of Dressing"]
+            },
+            {
+                name: "Caesar Salad",
+                price: 4.99,
+                build: ["Romaine Lettuce (tossed in dressing)","Cherry Tomatoes","Cucumbers","Shredded Parmesan Cheese","Croutons","Caesar Dressing"]
+            }
+        ]
+    },
+    beverages:{
+        items: [
+            {
+                name: "Small Soft Drink",
+                price: 0.99,
+                build: ''
+            },
+            {
+                name: "Medium Soft Drink",
+                price: 1.99,
+                build: ''
+            },
+            {
+                name: "Large Soft Drink",
+                price: 2.49,
+                build: ''
+            },
+            {
+                name: "Bottled Drinks",
+                price: 2.99,
+                build: ''
+            }
+        ]
+    }
+}

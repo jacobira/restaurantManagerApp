@@ -1,0 +1,57 @@
+.content {
+    height: 300px;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.content .entry {
+    height: 100px;
+    width: 100%;
+}
+.content .entry .label {
+    text-align: center;
+}
+.content .entry input {
+    height: 50px;
+    width: 170px;
+    margin-left: 112px;
+    font-size: 40px;
+    text-align: center;
+    border-radius: 5px;
+    outline: none;
+}
+.content .submit {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.content .submit .btn {
+    height: 50px;
+    width: 170px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 5px black;
+    background-color: lightgreen;
+}
+.content .notify {
+    height: 50px;
+}
+.content .notify .incorrect {
+    height: 30px;
+    width: 210px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 0 0 2px black;
+    color: white;
+    border-radius: 5px;
+    background-color: lightcoral;
+}
+.hidden {
+    display: none;
+}

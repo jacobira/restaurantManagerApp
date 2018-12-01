@@ -1,0 +1,14 @@
+
+ORDER LAYOUT
+{
+    date: "01-01",
+    orderNum: 1,
+    orderItems: []
+}
+
+ORDER HISTORY COLLECTION LAYOUT
+{
+    {order},
+    {order},
+    etc.
+}
