@@ -5,23 +5,42 @@ const io = require('socket.io')(server);
 
 var dbport = 27017;
 var port = 3333;
-var access = false;
-var mngr = false;
-
-
-var validatorNum = [1234] // place holder validation for development
+var validatorNums = [1234, 5678]; // place holder validation for development
+var mngrNums = [1234];
 
 // client connection specifics follow...
 io.on('connection', (socket) => {
-    console.log('New socket connection...')
+    console.log('New socket connection...');
+
+    var access = false;
+    var mngr = false;
+    
     socket.on('validate', (validator) => {
-       for(let i=0; i<=validatorNum.length; i++){
-           if(validator == validatorNum[i]){
+        for(let i=0; i<validatorNums.length; i++){
+            if(validator == validatorNums[i]){
                 access = true;
+                console.log('access set to true');
+            };
+        };
+        for(let i=0; i<mngrNums.length; i++){
+            if(mngrNums[i] == validator){
                 mngr = true;
-                socket.emit('accessGrant', 'Server: login successful!');
+                console.log('mngr set to true');
+            };
+        };
+        if(access == true){
+            if(mngr == true){
+                socket.emit("accessGrant", true);
+                console.log('mngr true firing');
+            } 
+            if(mngr == false){
+                socket.emit("accessGrant", false);
+                console.log('mngr true firing');
             }
-        }
+        };
+        if(access == false){
+            socket.emit("accessDeny");
+        };
     });
 
     //methods and calls as necessary after validation occur here.
@@ -59,6 +78,7 @@ io.on('connection', (socket) => {
 
 // error specifications follow...
 io.on('error', (err) => {
+    console.log('The following connection error occurred:');
     console.log(err);
 });
 

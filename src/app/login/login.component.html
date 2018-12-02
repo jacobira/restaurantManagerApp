@@ -3,10 +3,10 @@
     <div class="label">
       Employee ID Number
     </div>
-    <input value="{{ idInput }}">
+    <input [(ngModel)]="idInput">
   </div>
   <div class="submit">
-    <div class="btn" (click)="submitIdInput()">
+    <div class="btn" (click)="submitIdInput(idInput)">
       <div class="btnText">
         Enter
       </div>

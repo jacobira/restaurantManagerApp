@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerConnectService } from '../services/server-connect.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,9 @@ import { ServerConnectService } from '../services/server-connect.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private serverConnect: ServerConnectService) { }
+  constructor(private serverConnect: ServerConnectService, private socket: Socket) { }
 
   ngOnInit() {
-    this.serverTest();
-  }
-
-  serverTest(){
-    this.serverConnect.validate(1234);
+    
   }
 }
