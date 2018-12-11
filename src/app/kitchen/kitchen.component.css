@@ -1,28 +1,33 @@
 .content {
+  position: absolute;
+  height: 100%;
   width: 100%;
-  height: 600px;
+}
+.content .wrapper {
+  height: calc(100% - 75px);
+  width: 100%;
+  margin-top: 75px;
   display: flex;
 }
-.content .orderListSec {
+.content .wrapper .orderListSec {
   height: 100%;
   width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content .orderListSec .viewport {
-  height: 100%;
+.content .wrapper .orderListSec .viewport {
+  height: 90%;
   width: 80%;
-  margin-top: 50px;
 }
-.content .orderListSec .viewport .singleOrder {
+.content .wrapper .orderListSec .viewport .singleOrder {
   height: 80px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content .orderListSec .viewport .singleOrder .box {
+.content .wrapper .orderListSec .viewport .singleOrder .box {
   height: 60px;
   width: 80%;
   font-size: 20px;
@@ -31,6 +36,7 @@
   background-color: lightgreen;
   cursor: pointer;
 }
-.content .orderDisplaySec {
+.content .wrapper .orderDisplaySec {
   width: 70%;
+  height: 100%;
 }

@@ -1,15 +1,25 @@
-.banner {
-    height: 75px;
-    width: 100%;
-    background-color: lightblue;
-    display: flex;
-    box-shadow: 0 1px 5px black;
-}
-.banner .logo {
-    height: 65px;
-    width: 33px;
-    margin-top: 5px;
-    margin-left: 15px;
-    background-image: url(media/Efficient.png);
-    background-size: cover;
+.container {
+    height: 100vh;
+    z-index: 1;
+    .banner {
+        height: 75px;
+        width: 100%;
+        background-color: lightblue;
+        display: flex;
+        box-shadow: 0 1px 5px black;
+        position: absolute;
+        z-index: 3;
+        .logo {
+            height: 65px;
+            width: 33px;
+            margin-top: 5px;
+            margin-left: 15px;
+            background-image: url(media/Efficient.png);
+            background-size: cover;
+        }
+    }
+    * {
+        position: absolute;
+        z-index: 2;
+    }
 }

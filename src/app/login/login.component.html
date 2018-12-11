@@ -1,20 +1,22 @@
-<div class="content" id="content">
-  <div class="entry">
-    <div class="label">
-      Employee ID Number
+<div class="wrapper">
+  <div class="content">
+    <div class="entry">
+      <div class="label">
+        Employee ID Number
+      </div>
+      <input [(ngModel)]="idInput" id="inputBox">
     </div>
-    <input [(ngModel)]="idInput">
-  </div>
-  <div class="submit">
-    <div class="btn" (click)="submitIdInput(idInput)">
-      <div class="btnText">
-        Enter
+    <div class="submit">
+      <div class="btn" (click)="submitIdInput(idInput)">
+        <div class="btnText">
+          Enter
+        </div>
       </div>
     </div>
-  </div>
-  <div class="notify">
-    <div class="incorrect hidden" id="incorrect">
-      Invalid Information Entered
+    <div class="notify">
+      <div class="incorrect hidden" id="incorrect">
+        Invalid Information Entered
+      </div>
     </div>
   </div>
 </div>

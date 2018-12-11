@@ -1,13 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-html {
+html body {
+  min-height: 100vh;
+  height: auto;
   margin: 0;
-}
-body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  min-width: 700px;
-}
-app-kitchen {
-  height: calc(100% - 75px);
 }

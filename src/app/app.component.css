@@ -1,11 +1,17 @@
-.banner {
+.container {
+  height: 100vh;
+  z-index: 1;
+}
+.container .banner {
   height: 75px;
   width: 100%;
   background-color: lightblue;
   display: flex;
   box-shadow: 0 1px 5px black;
+  position: absolute;
+  z-index: 3;
 }
-.banner .logo {
+.container .banner .logo {
   height: 65px;
   width: 33px;
   margin-top: 5px;
@@ -13,6 +19,7 @@
   background-image: url(media/Efficient.png);
   background-size: cover;
 }
-app-kitchen {
-  height: calc(100% - 75px);
+.container * {
+  position: absolute;
+  z-index: 2;
 }

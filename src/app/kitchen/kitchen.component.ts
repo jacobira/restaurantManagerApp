@@ -12,28 +12,26 @@ export class KitchenComponent implements OnInit {
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
     this.socket.on('openOrdersDump', (data)=>{
       this.openOrders = data;
-      console.log(this.openOrders);
+      // console.log(this.openOrders);
     });
     this.socket.on('orderDetailsDump', (data)=>{
       let parsedData = JSON.parse(data);
-      this.displayDetails(parsedData);
+      this.viewedOrder = parsedData;
     });
     window.setInterval(()=>{
       this.serverConnect.toServer('getOpenOrders');
-    }, 5000);
+    }, 2000);
+    this.viewOrder(this.openOrders[0]);
   }
 
-  openOrders: any = [1,2,3];
+  openOrders: any = [];
   viewedOrder: any = {};
 
   ngOnInit() {
 
   }
 
-  viewOrderCall(orderNum){
+  viewOrder(orderNum){
     this.serverConnect.dataToServer('getOrderDetails', orderNum);
-  }
-  displayDetails(details){
-    // DOM manipulation here using details parameter.
   }
 }

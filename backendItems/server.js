@@ -60,20 +60,21 @@ io.on('connection', (socket) => {
         // be parsed on the front end.
         // place-holder data for development by defualt...
         let data = `{
-            items: [{
-                name: 'Cheeseburger',
-                price: 7.99,
-                build: [],
-                notes: 'No Tomatoes'
+            "orderNum": 1,
+            "items": [{
+                "name": "Cheeseburger",
+                "price": 7.99,
+                "build": [],
+                "notes": "No Tomatoes"
             },{
-                name: 'Medium Drink',
-                price: 1.99,
-                build: [],
-                notes: 'Coca-Cola'
+                "name": "Medium Drink",
+                "price": 1.99,
+                "build": [],
+                "notes": "Coca-Cola"
             }],
-            enteredTime: '14:35:25',
-            complete: false,
-            finalized: false
+            "enteredTime": "14:35:25",
+            "complete": false,
+            "finalized": false
         }`;
         socket.emit('orderDetailsDump', data);
     });

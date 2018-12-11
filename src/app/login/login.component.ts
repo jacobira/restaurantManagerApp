@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.socket.on("accessDeny", ()=>{
       console.log("Incorrect login information.");
       document.getElementById("incorrect").classList.remove("hidden");
-      document.getElementById("content").classList.add("outline");
+      document.getElementById("inputBox").classList.add("outline");
     });
   }
 }

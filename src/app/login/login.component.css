@@ -1,18 +1,21 @@
-.content {
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper .content {
   height: 300px;
   width: 400px;
-  margin: 0 auto;
-  border-radius: 5px;
-  margin-top: 100px;
 }
-.content .entry {
+.wrapper .content .entry {
   height: 100px;
   width: 100%;
 }
-.content .entry .label {
+.wrapper .content .entry .label {
   text-align: center;
 }
-.content .entry input {
+.wrapper .content .entry input {
   height: 50px;
   width: 170px;
   margin-left: 112px;
@@ -21,13 +24,13 @@
   border-radius: 5px;
   outline: none;
 }
-.content .submit {
+.wrapper .content .submit {
   height: 75px;
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.content .submit .btn {
+.wrapper .content .submit .btn {
   height: 50px;
   width: 170px;
   border-radius: 5px;
@@ -38,23 +41,21 @@
   box-shadow: 0 0 5px black;
   background-color: lightgreen;
 }
-.content .notify {
+.wrapper .content .notify {
   height: 50px;
 }
-.content .notify .incorrect {
+.wrapper .content .notify .incorrect {
   height: 30px;
   width: 210px;
   margin: 0 auto;
   padding: 10px;
   font-size: 18px;
-  text-align: center;
-  color: white;
-  border-radius: 5px;
-  background-color: lightcoral;
+  text-align: center;  
+  color: lightcoral;
 }
-.hidden {
+.wrapper .content .hidden {
   display: none;
 }
 .outline {
-  border: 2px solid lightcoral;
+  border: 1px solid lightcoral;
 }
