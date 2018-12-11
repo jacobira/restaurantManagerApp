@@ -8,3 +8,6 @@ body {
   margin: 0;
   min-width: 700px;
 }
+app-kitchen {
+  height: calc(100% - 75px);
+}

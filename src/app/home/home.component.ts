@@ -11,7 +11,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { }
 
+
   ngOnInit() {
     
+  }
+
+  getOpenOrders(){
+    this.serverConnect.toServer('getOpenOrders');
   }
 }

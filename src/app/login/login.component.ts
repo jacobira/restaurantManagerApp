@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
   submitIdInput(id){
     this.serverConnect.dataToServer("validate", id);
     this.socket.on("accessGrant", (mngr)=>{
-      console.log("Log in successful!");
       this.serverConnect.validated = true;
       if(mngr == true){
         this.serverConnect.mngr = true;
@@ -27,6 +26,8 @@ export class LoginComponent implements OnInit {
     });
     this.socket.on("accessDeny", ()=>{
       console.log("Incorrect login information.");
+      document.getElementById("incorrect").classList.remove("hidden");
+      document.getElementById("content").classList.add("outline");
     });
   }
 }

@@ -9,13 +9,13 @@
       </div>
     </div>
     <div class="kitchen">
-      <div class="btn" routerLink="/kitchen">
+      <div class="btn" routerLink="/kitchen" (click)="getOpenOrders()">
         Kitchen
       </div>
     </div>
   </div>
-  <div class="mngrItems">
-    <div class="mngrFncBtn">
+  <div class="mngrItems" id="mngr">
+    <div class="mngrFncBtn" routerLink="/manager">
       Manager Functions
     </div>
   </div>

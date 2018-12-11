@@ -4,9 +4,13 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 var dbport = 27017;
+// default MongoDB port.
 var port = 3333;
+// port for DB connection in backend.
 var validatorNums = [1234, 5678]; // place holder validation for development
 var mngrNums = [1234];
+
+// query DB here and assign validatorNums values.
 
 // client connection specifics follow...
 io.on('connection', (socket) => {
@@ -19,23 +23,21 @@ io.on('connection', (socket) => {
         for(let i=0; i<validatorNums.length; i++){
             if(validator == validatorNums[i]){
                 access = true;
-                console.log('access set to true');
+                // console.log('access set to true');
             };
         };
         for(let i=0; i<mngrNums.length; i++){
             if(mngrNums[i] == validator){
                 mngr = true;
-                console.log('mngr set to true');
+                // console.log('mngr set to true');
             };
         };
         if(access == true){
             if(mngr == true){
                 socket.emit("accessGrant", true);
-                console.log('mngr true firing');
             } 
             if(mngr == false){
                 socket.emit("accessGrant", false);
-                console.log('mngr true firing');
             }
         };
         if(access == false){
@@ -43,33 +45,58 @@ io.on('connection', (socket) => {
         };
     });
 
-    //methods and calls as necessary after validation occur here.
-    if(access == true){
-        socket.on('getOrderHistory', ()=>{
+    // methods and calls as necessary after validation occur here.
+    socket.on('getOrderHistory', ()=>{
 
-        });
-        socket.on('getMenuItems', ()=>{
-
-        });
-        socket.on('submitOrder', (orderData)=>{
-
-        });
-        socket.on('editOrder', (date, orderNum)=>{
-
-        });
-        socket.on('submitPayment', (dataArray)=>{
-
-        });
-        socket.on('finalizeOrder', (date, orderNum)=>{
-
-        });
-
-        if(mngr == true){
-            socket.on('addUser', (data)=>{
-                // using attached object, will create new user in database.
-            })
+    });
+    socket.on('getOpenOrders', ()=>{
+        // communicate with DB here and then emit fetched info.
+        if(access == true){
+            socket.emit('openOrdersDump', [1,2,3,4,5,6,7,8,9,10,13,15,17]);
         }
-    };
+    });
+    socket.on('getOrderDetails', (orderNum)=>{
+        // query order from DB and emit order details as JSON *STRING. Will
+        // be parsed on the front end.
+        // place-holder data for development by defualt...
+        let data = `{
+            items: [{
+                name: 'Cheeseburger',
+                price: 7.99,
+                build: [],
+                notes: 'No Tomatoes'
+            },{
+                name: 'Medium Drink',
+                price: 1.99,
+                build: [],
+                notes: 'Coca-Cola'
+            }],
+            enteredTime: '14:35:25',
+            complete: false,
+            finalized: false
+        }`;
+        socket.emit('orderDetailsDump', data);
+    });
+    socket.on('getMenuItems', ()=>{
+
+    });
+    socket.on('submitOrder', (orderData)=>{
+
+    });
+    socket.on('editOrder', (date, orderNum)=>{
+
+    });
+    socket.on('submitPayment', (dataArray)=>{
+
+    });
+    socket.on('finalizeOrder', (date, orderNum)=>{
+
+    });
+    
+    socket.on('addUser', (data)=>{
+        // using attached object, will create new user in database.
+    });
+    
 
     socket.on('disconnect', () => {
         console.log('Connection with socket has ended');
@@ -84,3 +111,4 @@ io.on('error', (err) => {
 
 // port connection follows...
 server.listen(port);
+console.log(`Server running on localhost:${port}`);

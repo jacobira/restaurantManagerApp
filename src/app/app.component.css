@@ -13,3 +13,6 @@
   background-image: url(media/Efficient.png);
   background-size: cover;
 }
+app-kitchen {
+  height: calc(100% - 75px);
+}

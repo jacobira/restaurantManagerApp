@@ -1,3 +1,16 @@
-<p>
-  kitchen works!
-</p>
+<div class="content">
+  <div class="orderListSec">
+    <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
+      <div class="singleOrder" *cdkVirtualFor="let order of openOrders">
+        <div class="box" (click)="completeOrder(order)">
+          #{{order}}
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+  <div class="orderDisplaySec">
+    <div class="display">
+
+    </div>
+  </div>
+</div>
