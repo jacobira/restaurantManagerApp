@@ -16,7 +16,10 @@ import { MngrAuthGuardService } from './services/mngr-auth-guard.service';
 import { ServerConnectService } from './services/server-connect.service';
 import { ManagerComponent } from './manager/manager.component';
 
-const config: SocketIoConfig = {url: 'http://localhost:3333', options: {}};
+// if accessing database remotely during development...
+// const config: SocketIoConfig = {url: 'http://52.15.149.88', options: {}};
+
+const config: SocketIoConfig = {url: 'localhost:3333', options: {}};
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},

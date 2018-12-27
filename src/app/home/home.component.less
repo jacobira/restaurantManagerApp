@@ -1,34 +1,73 @@
 .content {
-    height: 500px;
-    width: 600px;
-    margin: 0 auto;
-    margin-top: 50px;
-}
-.content .heading {
-    height: 50px;
-    font-size: 30px;
-    text-align: center;
-}
-.content .menuItems {
-    height: calc(100% - 50px);
-    display: flex;
-}
-.content .menuItems div {
     height: 100%;
-    width: 50%;
-}
-.content .menuItems div .btn {
-    height: 350px;
-    width: 250px;
-    border-radius: 5px;
+    width: 600px;
+    min-height: 730px;
     margin: 0 auto;
-    margin-top: 30px;
-    box-shadow: 0 0 5px black;
-    cursor: pointer;
-}
-.content .menuItems .frontHouse .btn {
-    background-color: lightblue;
-}
-.content .menuItems .kitchen .btn {
-    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .wrapper {
+        width: 550px;
+        .heading {
+            height: 50px;
+            font-size: 30px;
+            text-align: center;
+        }
+    
+        .menuItems {
+            height: 400px;
+            display: flex;
+    
+            div {
+                height: 100%;
+                width: 50%;
+    
+                .btn {
+                    height: 350px;
+                    width: 250px;
+                    border-radius: 5px;
+                    margin: 0 auto;
+                    margin-top: 30px;
+                    box-shadow: 0 0 5px black;
+                    cursor: pointer;
+                    outline: none;  
+                }
+            }
+    
+            .frontHouse {
+    
+                .btn {
+                    background-color: lightgreen;
+                    
+                }
+            }
+    
+            .kitchen {
+    
+                .btn {
+                    background-color: lightblue;
+    
+                }
+            }
+        }
+
+        .mngrItems {
+            height: 120px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .mngrFncBtn {
+                height: 100px;
+                width: 300px;
+                border-radius: 5px;
+                box-shadow: 0 0 5px black;
+                background-color: lightcoral;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+    }
 }

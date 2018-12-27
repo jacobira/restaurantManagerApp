@@ -1,22 +1,25 @@
 <div class="content">
-  <div class="heading">
-    Welcome to Efficient 1.0
-  </div>
-  <div class="menuItems">
-    <div class="frontHouse">
-      <div class="btn" routerLink="/frontHouse">
-        Front of House
+  <div class="wrapper">
+    <div class="heading">
+      Welcome to Efficient 1.0
+    </div>
+    <div class="menuItems">
+      <div class="frontHouse">
+        <div class="btn" routerLink="/frontHouse">
+          Front of House
+        </div>
+      </div>
+      <div class="kitchen">
+        <div class="btn" routerLink="/kitchen" (click)="getOpenOrders()">
+          Kitchen
+        </div>
       </div>
     </div>
-    <div class="kitchen">
-      <div class="btn" routerLink="/kitchen" (click)="getOpenOrders()">
-        Kitchen
+    <div class="mngrItems" id="mngr">
+      <div class="mngrFncBtn" routerLink="/manager">
+        <div class="label">Manager Functions</div>
+        <div class="lockIcon"></div>
       </div>
-    </div>
-  </div>
-  <div class="mngrItems" id="mngr">
-    <div class="mngrFncBtn" routerLink="/manager">
-      Manager Functions
     </div>
   </div>
 </div>

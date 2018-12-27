@@ -1,5 +1,7 @@
 .wrapper {
   height: 100%;
+  min-height: 730px;
+  min-width: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,8 +52,11 @@
   margin: 0 auto;
   padding: 10px;
   font-size: 18px;
-  text-align: center;  
-  color: lightcoral;
+  text-align: center;
+  text-shadow: 0 0 2px black;
+  color: white;
+  border-radius: 5px;
+  background-color: lightcoral;
 }
 .wrapper .content .hidden {
   display: none;

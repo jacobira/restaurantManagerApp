@@ -1,0 +1,89 @@
+{
+    "burgers":{
+        "secName": "Burgers",
+        "items": {
+            "classicBurger":{
+                "name": "Classic Burger",
+                "price": 6.99,
+                "build": ["Bun","Mayo","Mustard","Ketchup","Beef Patty","Onion","Lettuce","Tomato","Pickles"]
+            },
+            "classicCheeseburger":{
+                "name": "Classic Cheeseburger",
+                "price": 7.99,
+                "build": ["Bun","Mayo","Mustard","Ketchup","Beef Patty","Cheese","Onion","Lettuce","Tomato","Pickles"]
+            },
+            "pastramiBurger":{
+                "name": "Pastrami Burger",
+                "price": 8.99,
+                "build": ["Bun","Mayo","Beef Patty","Grilled Pastrami","Onion","Lettuce"]
+            }
+        }
+    },
+
+    "salads":{
+        "secName": "Salads",
+        "items": {
+            "chefSalad":{
+                "name": "Chef Salad",
+                "price": 4.99,
+                "build": ["Green Leaf Lettuce","Cucumber","Cherry Tomatoes","Hard-boiled Egg","Cheddar Cheese","Croutons","Dressing (choice)"]
+            },
+            "chickenCaesarSalad":{
+                "name": "Chicken Caesar Salad",
+                "price": 5.99,
+                "build": ["Romaine Lettuce","Cucumber","Cherry Tomatoes","Mozarella Cheese","Croutons","Caesar Dressing","Sliced Grilled Chicken"]
+            },
+            "southwestChickenSalad":{
+                "name": "Southwest Chicken Salad",
+                "price": 5.99,
+                "build": ["Romaine Lettuce","Black Beans","Tomato Chunks","Cilantro","Corn","Tortilla Strips","Sliced Grilled Chicken","Chipotle Ranch Dressing"]
+            }
+        }
+    },
+
+    "sides":{
+        "secName": "Sides",
+        "items": {
+            "macaroniAndCheese":{
+                "name": "Macaroni & Cheese",
+                "price": 4.99,
+                "build": ["Two Scoops"]
+            },
+            "macaroniSalad":{
+                "name": "Macaroni Salad",
+                "price": 3.99,
+                "build": ["Two Scoops"]
+            },
+            "coleslaw":{
+                "name": "Coleslaw",
+                "price": 3.99,
+                "build": ["Two Scoops"]
+            }
+        }
+    },
+
+    "beverages":{
+        "items":{
+            "smallDrink":{
+                "name": "Small Drink",
+                "price": 1.00,
+                "build": ["One Small Drink"]
+            },
+            "mediumDrink":{
+                "name": "Medium Drink",
+                "price": 1.99,
+                "build": ["One Medium Drink"]
+            },
+            "largeDrink":{
+                "name": "Large Drink",
+                "price": 2.49,
+                "build": ["One Large Drink"]
+            },
+            "bottledDrink":{
+                "name": "Bottled Drink",
+                "price": 2.49,
+                "build": ["One Bottled Drink"]
+            }
+        }
+    }
+}

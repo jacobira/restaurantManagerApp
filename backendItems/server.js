@@ -1,37 +1,76 @@
-const express = require('express');
-const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+// Dependency imports here...
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server, {'pingInterval': 2000, 'pingTimeout': 86400000});
 
-var dbport = 27017;
-// default MongoDB port.
+// PostgreSQL database imports here...
+var pg = require('pg'); //postgreSQL database
+var format = require('pg-format');
+var PGUSER = 'jacobbaldwin'; // ****change to power_user for deployment****
+var PGDATABASE = 'efficient-test'; // ****change to efficient for deployment****
+var dbConfig = {
+    user: PGUSER,
+    database: PGDATABASE,
+    max: 10,
+    idleTimeoutMillis: 30000
+};
+var pool = new pg.Pool(dbConfig);
+var myClient;
+
+// server's assigned port...
 var port = 3333;
-// port for DB connection in backend.
-var validatorNums = [1234, 5678]; // place holder validation for development
-var mngrNums = [1234];
 
-// query DB here and assign validatorNums values.
-
-// client connection specifics follow...
-io.on('connection', (socket) => {
+// server-client socket connection specifics follow...
+io.on('connection', function(socket){
     console.log('New socket connection...');
+
+    pool.connect(function(err, client, done){
+        if(err){console.log(err)};
+        myClient = client;
+    })
 
     var access = false;
     var mngr = false;
     
-    socket.on('validate', (validator) => {
-        for(let i=0; i<validatorNums.length; i++){
+    socket.on('validate', function(validator){
+        var validatorNums = [1234];
+        var mngrNums = [1234];
+
+        var getValidatorNumsQuery = format('SELECT userid FROM users');
+        myClient.query(getValidatorNumsQuery, function(err,result){
+            if (err){console.log(err)};
+            console.log(result.rows);
+            validatorNums = [];
+            for (var i=0; i<result.rows.length; i++){
+                validatorNums.push(result.rows[i].userid);
+            }
+            console.log(validatorNums);
+        })
+
+        var getMngrNumsQuery = format('SELECT userid FROM users WHERE mngr = true');
+        myClient.query(getMngrNumsQuery, function(err,result){
+            if (err){console.log(err)};
+            console.log(result.rows);
+            mngrNums = [];
+            for (var i=0; i<result.rows.length; i++){
+                mngrNums.push(result.rows[i].userid);
+            }
+            console.log(mngrNums);
+        })
+
+        for(var i=0; i<validatorNums.length; i++){
             if(validator == validatorNums[i]){
                 access = true;
                 // console.log('access set to true');
-            };
-        };
-        for(let i=0; i<mngrNums.length; i++){
+            }
+        }
+        for(var i=0; i<mngrNums.length; i++){
             if(mngrNums[i] == validator){
                 mngr = true;
                 // console.log('mngr set to true');
-            };
-        };
+            }
+        }
         if(access == true){
             if(mngr == true){
                 socket.emit("accessGrant", true);
@@ -39,76 +78,86 @@ io.on('connection', (socket) => {
             if(mngr == false){
                 socket.emit("accessGrant", false);
             }
-        };
+        }
         if(access == false){
             socket.emit("accessDeny");
-        };
-    });
+        }
+    })
 
-    // methods and calls as necessary after validation occur here.
-    socket.on('getOrderHistory', ()=>{
+    // methods and calls as necessary after validation follow...
 
-    });
-    socket.on('getOpenOrders', ()=>{
+    socket.on('getOpenOrders', function(year, month, day){
         // communicate with DB here and then emit fetched info.
         if(access == true){
-            socket.emit('openOrdersDump', [1,2,3,4,5,6,7,8,9,10,13,15,17]);
+            var getOpenOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = ${year} AND month = ${month} AND day = ${day} AND complete = false`);
+            myClient.query(getOpenOrdersQuery, function(err,result){
+                if(err){console.log(err)};
+                console.log(result.rows);
+                var openOrderNums = [];
+                for(var i=0; i<result.rows.length; i++){
+                    openOrderNums.push(result.rows[i].ordernum);
+                }
+                socket.emit('openOrdersDump', openOrderNums);
+            })
         }
-    });
-    socket.on('getOrderDetails', (orderNum)=>{
-        // query order from DB and emit order details as JSON *STRING. Will
-        // be parsed on the front end.
-        // place-holder data for development by defualt...
-        let data = `{
-            "orderNum": 1,
-            "items": [{
-                "name": "Cheeseburger",
-                "price": 7.99,
-                "build": [],
-                "notes": "No Tomatoes"
-            },{
-                "name": "Medium Drink",
-                "price": 1.99,
-                "build": [],
-                "notes": "Coca-Cola"
-            }],
-            "enteredTime": "14:35:25",
-            "complete": false,
-            "finalized": false
-        }`;
-        socket.emit('orderDetailsDump', data);
-    });
-    socket.on('getMenuItems', ()=>{
+    })
+    socket.on('getOrderDetails', function(orderNum, year, month, day){
+        var getOrderDetailsQuery = format(`SELECT * FROM orderhistory WHERE year = ${year} AND month = ${month} AND day = ${day} AND orderNum = ${orderNum}`);
+        myClient.query(getOrderDetailsQuery, function(err,result){
+            if(err){console.log(err)};
+            console.log(result.rows);
+            var orderDetails = result.rows[0];
+        })
+        socket.emit('orderDetailsDump', orderDetails);
+    })
+    socket.on('getMenuItems', function(){
+        var getMenuItemsQuery = format('SELECT * FROM menuitems');
+        myClient.query(getMenuItemsQuery, function(err,result){
+            if(err){console.log(err)};
+            console.log(result.rows);
+            var menuItems = result.rows;
+        })
+        socket.emit('menuItemsDump', menuItems);
+    })
+    socket.on('submitOrder', function(orderData){
+        
+    })
+    socket.on('editOrder', function(date, orderNum){
 
-    });
-    socket.on('submitOrder', (orderData)=>{
+    })
+    socket.on('submitPayment', function(dataArray){
 
-    });
-    socket.on('editOrder', (date, orderNum)=>{
+    })
+    socket.on('finalizeOrder', function(date, orderNum){
 
-    });
-    socket.on('submitPayment', (dataArray)=>{
-
-    });
-    socket.on('finalizeOrder', (date, orderNum)=>{
-
-    });
-    
-    socket.on('addUser', (data)=>{
+    })
+    // Manager-only items follow...
+    socket.on('getOrderHistory', function(year, month, day){
+        if(access == true){
+            var getOrderHistQuery = format(`SELECT * FROM orderhistory WHERE year = ${year} AND month = ${month} AND day = ${day}`);
+            myClient.query(getOrderHistQuery, function(err,result){
+                if(err){console.log(err)};
+                console.log(result.rows);
+                socket.emit('orderHistoryDump', result.rows);
+            })
+        }
+    })
+    socket.on('addUser', function(data){
         // using attached object, will create new user in database.
-    });
+    })
+    
     
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', function(){
         console.log('Connection with socket has ended');
-    });
-});
+    })
+})
 
 // error specifications follow...
-io.on('error', (err) => {
+io.on('error', function(err){
     console.log('The following connection error occurred:');
     console.log(err);
-});
+})
 
 // port connection follows...
 server.listen(port);
