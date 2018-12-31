@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   }
 
   submitIdInput(id){
-    this.serverConnect.dataToServer("validate", id);
+    this.serverConnect.toServer("validate", id);
     this.socket.on("accessGrant", (mngr)=>{
       this.serverConnect.validated = true;
       if(mngr == true){

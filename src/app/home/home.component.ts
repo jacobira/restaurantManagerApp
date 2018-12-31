@@ -17,6 +17,6 @@ export class HomeComponent implements OnInit {
   }
 
   getOpenOrders(){
-    this.serverConnect.toServer('getOpenOrders');
+    this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 }

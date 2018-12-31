@@ -9,6 +9,10 @@ import { Socket } from 'ngx-socket-io';
 })
 export class KitchenComponent implements OnInit {
 
+  year: string = '2018';
+  month: string = 'JAN';
+  day: string = '01';
+
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
     this.socket.on('openOrdersDump', (data)=>{
       this.openOrders = data;
@@ -18,11 +22,11 @@ export class KitchenComponent implements OnInit {
       let parsedData = JSON.parse(data);
       this.viewedOrder = parsedData;
     });
-    window.setInterval(()=>{
-      this.serverConnect.toServer('getOpenOrders');
-    }, 2000);
-    this.viewOrder(this.openOrders[0]);
+    this.serverConnect.toServer('getOpenOrders', -1, this.year, this.month, this.day);
+    this.setRefresh();
+    // this.viewOrder(this.openOrders[0], this.year, this.month, this.day);
   }
+
 
   openOrders: any = [];
   viewedOrder: any = {};
@@ -31,7 +35,13 @@ export class KitchenComponent implements OnInit {
 
   }
 
-  viewOrder(orderNum){
-    this.serverConnect.dataToServer('getOrderDetails', orderNum);
+  viewOrder(orderNum, year, month, day){
+    this.serverConnect.toServer('getOrderDetails', orderNum, year, month, day);
+  }
+
+  setRefresh(){
+    window.setInterval(()=>{
+      this.serverConnect.toServer('getOpenOrders', -1, this.year, this.month, this.day);
+    }, 2000);
   }
 }
