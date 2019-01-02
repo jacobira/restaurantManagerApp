@@ -1,0 +1,63 @@
+.content {
+    height: 100%;
+    width: 100%;
+    min-height: 730px;
+    display: flex;
+
+    .wrapper {
+        height: ~"calc(100% - 75px)";
+        width: 100%;
+        margin-top: 75px;
+        display: flex;
+
+        .left {
+            height: 100%;
+            width: 30%;
+            background-color: lightgray;
+
+            .ordersBox {
+                height: 100%;
+                width: 100%;
+
+                .viewport {
+                    height: 90%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    
+                    .singleOrder {
+                        height: 75px;
+                        width: 175px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: gray;
+
+                        .box {
+                            height: 50px;
+                            width: 150px;
+                            font-size: 16px;
+                            background-color: lightblue;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .right {
+            height: 100%;
+            width: 70%;
+
+            .orderDetailsBox {
+                height: ~"calc(100% - 200px)";
+                width: 100%;
+            }
+
+            .orderPymtBox {
+                height: 200px;
+                width: 100%;
+                background-color: lightcoral;
+            }
+        }
+    }
+}

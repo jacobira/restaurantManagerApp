@@ -101,7 +101,7 @@ io.on('connection', function(socket){
                                         AND day = '${data.day}' AND complete = false`);
             myClient.query(getOpenOrdersQuery, function(err,result){
                 if(err){console.log(err)};
-                console.log(result.rows);
+                // console.log(result.rows);
                 var openOrderNums = [];
                 for(var i=0; i<result.rows.length; i++){
                     openOrderNums.push(result.rows[i].ordernum);
@@ -110,10 +110,25 @@ io.on('connection', function(socket){
             });
         }
     });
+    socket.on('getUnpaidOrders', function(data){
+        if(access == true){
+            var getUnpaidOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
+                                        AND day = '${data.day}' AND finalized = false`);
+            myClient.query(getUnpaidOrdersQuery, function(err,result){
+                if(err){console.log(err)};
+                // console.log(result.rows);
+                var unpaidOrderNums = [];
+                for(var i=0; i<result.rows.length; i++){
+                    unpaidOrderNums.push(result.rows[i].ordernum);
+                }
+                socket.emit('unpaidOrdersDump', unpaidOrderNums);
+            });
+        }
+    });
     socket.on('getOrderDetails', function(data){
         if(access == true){
             var getOrderDetailsQuery = format(`SELECT * FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND orderNum = '${data.orderNum}'`);
+                                        AND day = '${data.day}' AND orderNum = '${data.ordernum}'`);
             var orderDetails;
             myClient.query(getOrderDetailsQuery, function(err,result){
                 if(err){console.log(err)};

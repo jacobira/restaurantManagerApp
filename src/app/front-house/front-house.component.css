@@ -1,0 +1,54 @@
+.content {
+  height: 100%;
+  width: 100%;
+  min-height: 730px;
+  display: flex;
+}
+.content .wrapper {
+  height: calc(100% - 75px);
+  width: 100%;
+  margin-top: 75px;
+  display: flex;
+}
+.content .wrapper .left {
+  height: 100%;
+  width: 30%;
+  background-color: lightgray;
+}
+.content .wrapper .left .ordersBox {
+  height: 100%;
+  width: 100%;
+}
+.content .wrapper .left .ordersBox .viewport {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.content .wrapper .left .ordersBox .viewport .singleOrder {
+  height: 75px;
+  width: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+}
+.content .wrapper .left .ordersBox .viewport .singleOrder .box {
+  height: 50px;
+  width: 150px;
+  font-size: 16px;
+  background-color: lightblue;
+}
+.content .wrapper .right {
+  height: 100%;
+  width: 70%;
+}
+.content .wrapper .right .orderDetailsBox {
+  height: calc(100% - 200px);
+  width: 100%;
+}
+.content .wrapper .right .orderPymtBox {
+  height: 200px;
+  width: 100%;
+  background-color: lightcoral;
+}

@@ -21,15 +21,20 @@ export class KitchenComponent implements OnInit {
     this.socket.on('orderDetailsDump', (data)=>{
       let parsedData = JSON.parse(data);
       this.viewedOrder = parsedData;
+      this.viewedOrderNum = parsedData.orderNum;
+      this.viewedOrderItems = JSON.parse(parsedData.items);
     });
-    this.serverConnect.toServer('getOpenOrders', -1, this.year, this.month, this.day);
+    this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
+                                                      this.serverConnect.currDay);
     this.setRefresh();
     // this.viewOrder(this.openOrders[0], this.year, this.month, this.day);
   }
 
-
-  openOrders: any = [];
+  openOrders: string[] = [];
   viewedOrder: any = {};
+
+  viewedOrderNum: string = '';
+  viewedOrderItems: any[];
 
   ngOnInit() {
 
@@ -41,7 +46,8 @@ export class KitchenComponent implements OnInit {
 
   setRefresh(){
     window.setInterval(()=>{
-      this.serverConnect.toServer('getOpenOrders', -1, this.year, this.month, this.day);
+      this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
+                                                        this.serverConnect.currDay);
     }, 2000);
   }
 }
