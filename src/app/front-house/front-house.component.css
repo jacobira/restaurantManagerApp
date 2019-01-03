@@ -10,34 +10,31 @@
   margin-top: 75px;
   display: flex;
 }
-.content .wrapper .left {
+.content .wrapper .ordersBox {
   height: 100%;
   width: 30%;
-  background-color: lightgray;
+  display: flex;
+  align-items: center;
 }
-.content .wrapper .left .ordersBox {
-  height: 100%;
-  width: 100%;
-}
-.content .wrapper .left .ordersBox .viewport {
+.content .wrapper .ordersBox .viewport {
   height: 90%;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
-.content .wrapper .left .ordersBox .viewport .singleOrder {
+.content .wrapper .ordersBox .viewport .singleOrder {
   height: 75px;
-  width: 175px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gray;
 }
-.content .wrapper .left .ordersBox .viewport .singleOrder .box {
+.content .wrapper .ordersBox .viewport .singleOrder .box {
   height: 50px;
-  width: 150px;
+  width: 90%;
+  border-radius: 5px;
   font-size: 16px;
-  background-color: lightblue;
+  box-shadow: 0 0 5px black;
+  background-color: lightgreen;
+  cursor: pointer;
 }
 .content .wrapper .right {
   height: 100%;
@@ -50,5 +47,15 @@
 .content .wrapper .right .orderPymtBox {
   height: 200px;
   width: 100%;
-  background-color: lightcoral;
+  display: flex;
+  background-color: lightgray;
+}
+.content .wrapper .right .orderPymtBox .payOptions {
+  height: 100%;
+  width: 70%;
+  background-color: greenyellow;
+}
+.content .wrapper .right .orderPymtBox .totals {
+  height: 100%;
+  width: 30%;
 }

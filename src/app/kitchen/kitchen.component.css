@@ -18,18 +18,18 @@
 }
 .content .wrapper .orderListSec .viewport {
   height: 90%;
-  width: 80%;
+  width: 100%;
 }
 .content .wrapper .orderListSec .viewport .singleOrder {
-  height: 80px;
+  height: 75px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .content .wrapper .orderListSec .viewport .singleOrder .box {
-  height: 60px;
-  width: 80%;
+  height: 50px;
+  width: 90%;
   font-size: 20px;
   border-radius: 5px;
   box-shadow: 0 0 5px black;
@@ -39,4 +39,19 @@
 .content .wrapper .orderDisplaySec {
   width: 70%;
   height: 100%;
+}
+.content .wrapper .orderDisplaySec .heading {
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+.content .wrapper .orderDisplaySec .heading .orderNumberBox {
+  height: 50px;
+  width: 50px;
+  margin-left: 50px;
+}
+.content .wrapper .orderDisplaySec .heading .orderNumberBox .orderNumber {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 3px black;
 }

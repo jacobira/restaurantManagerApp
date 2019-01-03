@@ -12,7 +12,10 @@ export class FrontHouseComponent implements OnInit {
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
     this.socket.on('orderDetailsDump', (data)=>{
       let parsedData = JSON.parse(data);
-      this.viewedOrder = parsedData;
+      this.viewedOrder = parsedData.ordernum;
+      this.viewedOrderItems = parsedData.items;
+      this.viewedOrderComplete = parsedData.complete;
+      this.viewedOrderFinalized = parsedData.finalized;
     });
     this.socket.on('unpaidOrdersDump', (data)=>{
       this.unpaidOrders = data;
@@ -23,7 +26,11 @@ export class FrontHouseComponent implements OnInit {
   }
   
   unpaidOrders: string[] = [];
-  viewedOrder: any = {};
+
+  viewedOrder: string = "0";
+  viewedOrderItems: string[] = [];
+  viewedOrderComplete: boolean = false;
+  viewedOrderFinalized: boolean = false;
 
   ngOnInit() {
   }

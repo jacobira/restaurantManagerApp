@@ -1,22 +1,33 @@
 <div class="content">
   <div class="wrapper">
-    <div class="left">
-      <div class="ordersBox">
-        <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
-          <div class="singleOrder" *cdkVirtualFor="let order of unpaidOrders">
-            <div class="box">
-              {{order}}
-            </div>
+    
+    <div class="ordersBox">
+      <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
+        <div class="singleOrder" *cdkVirtualFor="let order of unpaidOrders">
+          <div class="box">
+            {{order}}
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+
+    <div class="right">
+      <div class="orderDetailsBox">
+        <cdk-virtual-scroll-viewport class="detailsViewport" itemSize="50">
+          <div class="singleItem" *cdkVirtualFor="let item of viewedOrderItems">
+            {{item.name}}
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
-    </div>
-    <div class="right">
-      <div class="orderDetailsBox">
-
-      </div>
       <div class="orderPymtBox">
+        <div class="payOptions">
 
+        </div>
+        <div class="totals">
+          <div class="subtotal"></div>
+          <div class="tax"></div>
+          <div class="grandTotal"></div>
+        </div>
       </div>
     </div>
   </div>

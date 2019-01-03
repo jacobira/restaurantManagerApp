@@ -34,9 +34,12 @@ io.on('connection', function(socket){
     var mngr = false;
     var currUser = '';
     
-    socket.on('validate', function(validator){
+    socket.on('validate', function(preParseData){
         var validatorNums = [1234];
         var mngrNums = [1234];
+
+        var data = JSON.parse(preParseData);
+        var validator = data.data;
 
         var getValidatorNumsQuery = format('SELECT userid FROM users');
         myClient.query(getValidatorNumsQuery, function(err,result){
@@ -94,9 +97,10 @@ io.on('connection', function(socket){
         socket.emit('currUserNameDump', currUser);
     });
 
-    socket.on('getOpenOrders', function(data){
+    socket.on('getOpenOrders', function(preParseData){
         // communicate with DB here and then emit fetched info.
         if(access == true){
+            var data = JSON.parse(preParseData);
             var getOpenOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
                                         AND day = '${data.day}' AND complete = false`);
             myClient.query(getOpenOrdersQuery, function(err,result){
@@ -110,8 +114,9 @@ io.on('connection', function(socket){
             });
         }
     });
-    socket.on('getUnpaidOrders', function(data){
+    socket.on('getUnpaidOrders', function(preParseData){
         if(access == true){
+            var data = JSON.parse(preParseData);
             var getUnpaidOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
                                         AND day = '${data.day}' AND finalized = false`);
             myClient.query(getUnpaidOrdersQuery, function(err,result){
@@ -125,19 +130,18 @@ io.on('connection', function(socket){
             });
         }
     });
-    socket.on('getOrderDetails', function(data){
+    socket.on('getOrderDetails', function(preParseData){
         if(access == true){
+            var data = JSON.parse(preParseData);
             var getOrderDetailsQuery = format(`SELECT * FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND orderNum = '${data.ordernum}'`);
-            var orderDetails;
+                                        AND day = '${data.day}' AND ordernum = '${data.data}'`);
             myClient.query(getOrderDetailsQuery, function(err,result){
                 if(err){console.log(err)};
-                console.log(result.rows);
-                orderDetails = result.rows[0];
+                var orderDetails = JSON.stringify(result.rows[0]);
+                socket.emit('orderDetailsDump', orderDetails);
             });
-            socket.emit('orderDetailsDump', orderDetails);
         }
-    });
+    }); 
     socket.on('getMenuItems', function(){
         if(access == true){
             var getMenuItemsQuery = format('SELECT * FROM menuitems');
@@ -146,12 +150,13 @@ io.on('connection', function(socket){
                 if(err){console.log(err)};
                 console.log(result.rows);
                 menuItems = result.rows;
-            });
-            socket.emit('menuItemsDump', menuItems);
+                socket.emit('menuItemsDump', menuItems);
+            });   
         }
     });
-    socket.on('getNewOrderNum', function(data){
+    socket.on('getNewOrderNum', function(preParseData){
         if(access == true){
+            var data = JSON.parse(preParseData);
             var getUsedNumsQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
                                         AND day = '${data.day}'`);
             var newNum;
@@ -165,12 +170,13 @@ io.on('connection', function(socket){
                     }
                 }
                 newNum = highestNum++;
+                socket.emit('newOrderNumDump', newNum);
             });
-            socket.emit('newOrderNumDump', newNum);
         }
     });
-    socket.on('submitOrder', function(data){
+    socket.on('submitOrder', function(preParseData){
         if(access == true){
+            var data = JSON.parse(preParseData);
             var submitOrderQuery = format(`INSERT INTO orderhistory (year, month, day, ordernum, items, complete, finalized) 
                                         VALUES ('${data.year}','${data.month}','${data.day}','${data.orderNum}','${data.items}', false, false)`);
         }
@@ -196,8 +202,9 @@ io.on('connection', function(socket){
         }
     });
     // Manager-only items follow...
-    socket.on('getOrderHistory', function(data){
+    socket.on('getOrderHistory', function(preParseData){
         if(access == true && mngr == true){
+            var data = JSON.parse(preParseData);
             var getOrderHistQuery = format(`SELECT * FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
                                         AND day = '${data.day}'`);
             myClient.query(getOrderHistQuery, function(err,result){

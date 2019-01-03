@@ -39,17 +39,17 @@ export class ServerConnectService {
   // reqests located below...
 
   toServer(event, data?, year?, month?, day?){
-    if(data != -1){
+    if(data !== -1){
       if(year && month && day){
-        this.socket.emit(event, {data, year, month, day});
+        this.socket.emit(event, `{"data": "${data}", "year": "${year}", "month": "${month}", "day": "${day}"}`);
       }
       else{
-        this.socket.emit(event, data);
+        this.socket.emit(event, `{"data": "${data}"}`);
       }
     }
-    if(data == -1){
+    if(data === -1){
       if(year && month && day) {
-        this.socket.emit(event, {year, month, day});
+        this.socket.emit(event, `{"year": "${year}", "month": "${month}", "day": "${day}"}`);
       }
       else {
         this.socket.emit(event);
