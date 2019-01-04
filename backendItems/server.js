@@ -102,7 +102,7 @@ io.on('connection', function(socket){
         if(access == true){
             var data = JSON.parse(preParseData);
             var getOpenOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND complete = false`);
+                                        AND day = '${data.day}' AND complete = false ORDER BY ordernum ASC`);
             myClient.query(getOpenOrdersQuery, function(err,result){
                 if(err){console.log(err)};
                 // console.log(result.rows);
@@ -114,11 +114,27 @@ io.on('connection', function(socket){
             });
         }
     });
+    socket.on('getOpenOrdersAfterComplete', function(preParseData){
+        if(access == true){
+            var data = JSON.parse(preParseData);
+            var getOpenOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
+                                        AND day = '${data.day}' AND complete = false ORDER BY ordernum ASC`);
+            myClient.query(getOpenOrdersQuery, function(err,result){
+                if(err){console.log(err)};
+                // console.log(result.rows);
+                var openOrderNums = [];
+                for(var i=0; i<result.rows.length; i++){
+                    openOrderNums.push(result.rows[i].ordernum);
+                }
+                socket.emit('openOrdersDumpAfterComplete', openOrderNums);
+            });
+        }
+    });
     socket.on('getUnpaidOrders', function(preParseData){
         if(access == true){
             var data = JSON.parse(preParseData);
             var getUnpaidOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND finalized = false`);
+                                        AND day = '${data.day}' AND finalized = false ORDER BY ordernum ASC`);
             myClient.query(getUnpaidOrdersQuery, function(err,result){
                 if(err){console.log(err)};
                 // console.log(result.rows);
@@ -134,7 +150,7 @@ io.on('connection', function(socket){
         if(access == true){
             var data = JSON.parse(preParseData);
             var getCompleteOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND complete = true`);
+                                        AND day = '${data.day}' AND complete = true ORDER BY ordernum ASC`);
             myClient.query(getCompleteOrdersQuery, function(err,result){
                 if(err){console.log(err)};
                 var completeOrderNums = [];
@@ -173,7 +189,7 @@ io.on('connection', function(socket){
         if(access == true){
             var data = JSON.parse(preParseData);
             var getUsedNumsQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}'`);
+                                        AND day = '${data.day}' ORDER BY ordernum ASC`);
             var newNum;
             myClient.query(getUsedNumsQuery, function(err,result){
                 if(err){console.log(err)};
@@ -193,7 +209,7 @@ io.on('connection', function(socket){
         if(access == true){
             var data = JSON.parse(preParseData);
             var submitOrderQuery = format(`INSERT INTO orderhistory (year, month, day, ordernum, items, complete, finalized) 
-                                        VALUES ('${data.year}','${data.month}','${data.day}','${data.orderNum}','${data.items}', false, false)`);
+                                        VALUES ('${data.year}','${data.month}','${data.day}','${data.data}','${data.items}', false, false)`);
         }
     });
     socket.on('editOrder', function(data){
@@ -201,9 +217,17 @@ io.on('connection', function(socket){
             // sql get order and edit
         }
     });
-    socket.on('completeOrder', function(data){
+    socket.on('completeOrder', function(preParsedData){
         if(access == true){
             // sql get order and edit
+            var data = JSON.parse(preParsedData);
+            var completeOrderStatement = format(`UPDATE orderhistory SET complete = true WHERE ordernum='${data.data}' AND year='${data.year}'
+                                        AND month='${data.month}' AND day='${data.day}'`);
+            myClient.query(completeOrderStatement, function(err, result){
+                if(err){console.log(err)};
+                console.log(result);
+                socket.emit('orderMarkedComplete');
+            })
         }
     });
     socket.on('submitPayment', function(dataArray){

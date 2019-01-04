@@ -13,6 +13,7 @@
 .content .wrapper .ordersBox {
   height: 100%;
   width: 30%;
+  background-color: lightgray;
 }
 .content .wrapper .ordersBox .newOrderSec {
   height: 100px;
@@ -30,13 +31,16 @@
   box-shadow: 0 0 1px black;
   background-color: lightcoral;
   cursor: pointer;
+  outline: none;
 }
 .content .wrapper .ordersBox .newOrderSec .newOrderBtn .btnText {
   font-size: 30px;
 }
 .content .wrapper .ordersBox .viewport {
   height: calc(90% - 100px);
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
 }
 .content .wrapper .ordersBox .viewport .singleOrder {
   height: 75px;
@@ -73,7 +77,7 @@
 .content .wrapper .right .orderPymtBox .payOptions {
   height: 100%;
   width: 70%;
-  background-color: greenyellow;
+  background-color: #6ebb50;
 }
 .content .wrapper .right .orderPymtBox .totals {
   height: 100%;

@@ -15,10 +15,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: lightgray;
 }
 .content .wrapper .orderListSec .viewport {
   height: 90%;
-  width: 100%;
+  width: 90%;
+  background-color: white;
 }
 .content .wrapper .orderListSec .viewport .singleOrder {
   height: 75px;
@@ -75,6 +77,9 @@
 }
 .content .wrapper .orderDisplaySec .heading .orderComplete .completeBtn .btnText {
   font-size: 20px;
+}
+.content .wrapper .orderDisplaySec .heading .orderComplete .faded {
+  opacity: 0.5;
 }
 .content .wrapper .orderDisplaySec .itemViewport {
   height: calc(100% - 95px);

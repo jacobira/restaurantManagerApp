@@ -11,11 +11,13 @@ export class FrontHouseComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
     this.socket.on('orderDetailsDump', (data)=>{
-      let parsedData = JSON.parse(data);
-      this.viewedOrder = parsedData.ordernum;
-      this.viewedOrderItems = parsedData.items;
-      this.viewedOrderComplete = parsedData.complete;
-      this.viewedOrderFinalized = parsedData.finalized;
+      if(data !== null){
+        let parsedData = JSON.parse(data);
+        this.viewedOrder = parsedData.ordernum;
+        this.viewedOrderItems = parsedData.items;
+        this.viewedOrderComplete = parsedData.complete;
+        this.viewedOrderFinalized = parsedData.finalized;
+      }
     });
     this.socket.on('unpaidOrdersDump', (data)=>{
       this.unpaidOrders = data;
@@ -27,7 +29,11 @@ export class FrontHouseComponent implements OnInit {
       for(let i=0; i<this.completeOrders.length; i++){
         for(let a=0; a<this.unpaidOrders.length; a++){
           if(this.unpaidOrders[a] == this.completeOrders[i]){
-            document.getElementById(`${this.unpaidOrders[a]}`).classList.add('completed');
+            // below if statement is for preventing errors when navigating and no such 
+            // DOM element exists in the current view...
+            if(document.getElementById(`${this.unpaidOrders[a]}`)){
+              document.getElementById(`${this.unpaidOrders[a]}`).classList.add('completed');
+            }
           }
         }
       };
