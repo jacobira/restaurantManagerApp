@@ -13,11 +13,29 @@
 .content .wrapper .ordersBox {
   height: 100%;
   width: 30%;
+}
+.content .wrapper .ordersBox .newOrderSec {
+  height: 100px;
+  width: 100%;
   display: flex;
   align-items: center;
 }
+.content .wrapper .ordersBox .newOrderSec .newOrderBtn {
+  height: 70px;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 1px black;
+  background-color: lightcoral;
+  cursor: pointer;
+}
+.content .wrapper .ordersBox .newOrderSec .newOrderBtn .btnText {
+  font-size: 30px;
+}
 .content .wrapper .ordersBox .viewport {
-  height: 90%;
+  height: calc(90% - 100px);
   width: 100%;
 }
 .content .wrapper .ordersBox .viewport .singleOrder {
@@ -30,11 +48,13 @@
 .content .wrapper .ordersBox .viewport .singleOrder .box {
   height: 50px;
   width: 90%;
-  border-radius: 5px;
-  font-size: 16px;
-  box-shadow: 0 0 5px black;
+  font-size: 40px;
+  box-shadow: 0 0 1px black;
   background-color: lightgreen;
   cursor: pointer;
+}
+.content .wrapper .ordersBox .viewport .singleOrder .completed {
+  background-color: gold;
 }
 .content .wrapper .right {
   height: 100%;

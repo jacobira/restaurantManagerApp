@@ -19,6 +19,18 @@ export class FrontHouseComponent implements OnInit {
     });
     this.socket.on('unpaidOrdersDump', (data)=>{
       this.unpaidOrders = data;
+      this.serverConnect.toServer('getCompleteOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth,
+                                                            this.serverConnect.currDay);
+    });
+    this.socket.on('completeOrdersDump', (data)=>{
+      this.completeOrders = data;
+      for(let i=0; i<this.completeOrders.length; i++){
+        for(let a=0; a<this.unpaidOrders.length; a++){
+          if(this.unpaidOrders[a] == this.completeOrders[i]){
+            document.getElementById(`${this.unpaidOrders[a]}`).classList.add('completed');
+          }
+        }
+      };
     });
     this.serverConnect.toServer('getUnpaidOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth,
                                                         this.serverConnect.currDay);
@@ -26,6 +38,8 @@ export class FrontHouseComponent implements OnInit {
   }
   
   unpaidOrders: string[] = [];
+
+  completeOrders: string[] = [];
 
   viewedOrder: string = "0";
   viewedOrderItems: string[] = [];

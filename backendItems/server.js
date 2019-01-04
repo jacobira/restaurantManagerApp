@@ -130,6 +130,21 @@ io.on('connection', function(socket){
             });
         }
     });
+    socket.on('getCompleteOrders', function(preParseData){
+        if(access == true){
+            var data = JSON.parse(preParseData);
+            var getCompleteOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
+                                        AND day = '${data.day}' AND complete = true`);
+            myClient.query(getCompleteOrdersQuery, function(err,result){
+                if(err){console.log(err)};
+                var completeOrderNums = [];
+                for(var i=0; i<result.rows.length; i++){
+                    completeOrderNums.push(result.rows[i].ordernum);
+                }
+                socket.emit('completeOrdersDump', completeOrderNums);
+            });
+        }
+    });
     socket.on('getOrderDetails', function(preParseData){
         if(access == true){
             var data = JSON.parse(preParseData);

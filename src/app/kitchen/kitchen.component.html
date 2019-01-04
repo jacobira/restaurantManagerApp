@@ -1,28 +1,42 @@
 <div class="content">
   <div class="wrapper">
-      <div class="orderListSec">
-          <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
-            <div class="singleOrder" *cdkVirtualFor="let order of openOrders">
-              <div class="box" (click)="viewOrder(order)">
-                {{order}}
-              </div>
-            </div>
-          </cdk-virtual-scroll-viewport>
-        </div>
-        <div class="orderDisplaySec">
-          <div class="heading">
-            <div class="orderNumberBox">
-                <div class="orderNumber">
-                    {{viewedOrderNum}}
-                </div>
-            </div>
-            <div class="orderInfo">
-
-            </div>
-          </div>
-          <div class="orderItem">
-
+    <div class="orderListSec">
+      <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
+        <div class="singleOrder" *cdkVirtualFor="let order of openOrders">
+          <div class="box" (click)="viewOrder(order)">
+            {{order}}
           </div>
         </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <div class="orderDisplaySec">
+      <div class="heading">
+        <div class="orderNumberBox">
+            <div class="orderNumber">
+                Order #{{viewedOrderNum}}
+            </div>
+        </div>
+        <div class="orderInfo">
+
+        </div>
+        <div class="orderComplete">
+          <div class="completeBtn">
+            <div class="btnText">
+              Complete Order
+            </div>
+          </div>
+        </div>
+      </div>
+      <cdk-virtual-scroll-viewport class="itemViewport" itemSize="50">
+        <div class="orderItem" *cdkVirtualFor="let item of viewedOrderItems">
+          <div class="itemName">
+              + {{item.name}}
+          </div>
+          <div class="itemSpecs">
+            {{item.notes}}
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
   </div>
 </div>
