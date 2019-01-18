@@ -35,66 +35,39 @@ io.on('connection', function(socket){
     var currUser = '';
     
     socket.on('validate', function(preParseData){
-        var validatorNums = [1234];
-        var mngrNums = [1234];
+        
+        var data = JSON.parse(preParseData).data;
+        console.log(data);
 
-        var data = JSON.parse(preParseData);
-        var validator = data.data;
-
-        var getValidatorNumsQuery = format('SELECT userid FROM users');
-        myClient.query(getValidatorNumsQuery, function(err,result){
-            if (err){console.log(err)};
-            console.log(result.rows);
-            validatorNums = [];
-            for (var i=0; i<result.rows.length; i++){
-                validatorNums.push(result.rows[i].userid);
+        var validateNumQuery = format(`SELECT * FROM users WHERE userid = '${data}'`);
+        myClient.query(validateNumQuery, function(err,result){
+            if(err){console.log(err)};
+            if(result.rows.length > 0){
+                if(data == result.rows[0].userid){
+                    access = true;
+                    console.log('Access is verified');
+                    currUser = JSON.parse(data).name;
+                    if(result.rows[0].mngr == true){
+                        mngr = true;
+                        socket.emit('accessGrant', true);
+                    }
+                    else {
+                        socket.emit('accessGrant', false);
+                    }
+                }
             }
-            console.log(validatorNums);
+            else{
+                console.log('Access denied');
+                socket.emit('accessDeny');
+            }
         });
-        var getMngrNumsQuery = format('SELECT userid FROM users WHERE mngr = true');
-        myClient.query(getMngrNumsQuery, function(err,result){
-            if (err){console.log(err)};
-            console.log(result.rows);
-            mngrNums = [];
-            for (var i=0; i<result.rows.length; i++){
-                mngrNums.push(result.rows[i].userid);
-            }
-            console.log(mngrNums);
-        });
-        for(var i=0; i<validatorNums.length; i++){
-            if(validator == validatorNums[i]){
-                access = true;
-                // console.log('access set to true');
-                var getUserNameQuery = format(`SELECT name FROM users WHERE userid = '${validator}'`);
-                myClient.query(getUserNameQuery, function(err,result){
-                    console.log(result.rows);
-                    currUser = result.rows[0].name;
-                    console.log('Currently logged in as: ' + currUser);
-                });
-            }
-        }
-        for(var i=0; i<mngrNums.length; i++){
-            if(mngrNums[i] == validator){
-                mngr = true;
-                // console.log('mngr set to true');
-            }
-        }
-        if(access == true){
-            if(mngr == true){
-                socket.emit("accessGrant", true);
-            } 
-            if(mngr == false){
-                socket.emit("accessGrant", false);
-            }
-        }
-        if(access == false){
-            socket.emit("accessDeny");
-        }
     });
 
     // methods and calls as necessary after validation follow...
     socket.on('getCurrUserName', function(){
-        socket.emit('currUserNameDump', currUser);
+        if(access == true){
+            socket.emit('currUserNameDump', currUser);
+        }
     });
 
     socket.on('getOpenOrders', function(preParseData){

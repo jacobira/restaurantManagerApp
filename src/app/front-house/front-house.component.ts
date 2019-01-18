@@ -11,18 +11,32 @@ export class FrontHouseComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
     this.socket.on('orderDetailsDump', (data)=>{
+      console.log(data);
       if(data !== null){
         let parsedData = JSON.parse(data);
         this.viewedOrder = parsedData.ordernum;
-        this.viewedOrderItems = parsedData.items;
+        this.viewedOrderItems = JSON.parse(parsedData.items);
         this.viewedOrderComplete = parsedData.complete;
         this.viewedOrderFinalized = parsedData.finalized;
+        if(this.viewedOrderComplete == true){
+          document.getElementById('completedMark').classList.remove('hidden')
+        }
+        if(this.viewedOrderComplete == false){
+          if(document.getElementById('completedMar')){
+            document.getElementById('completedMark').classList.add('hidden');
+          }
+        }
       }
+      console.log(this.viewedOrderItems);
     });
     this.socket.on('unpaidOrdersDump', (data)=>{
       this.unpaidOrders = data;
       this.serverConnect.toServer('getCompleteOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth,
                                                             this.serverConnect.currDay);
+      if(this.firstLoad == true){
+        this.firstLoad = false;
+        this.viewOrder(this.unpaidOrders[0]);
+      }
     });
     this.socket.on('completeOrdersDump', (data)=>{
       this.completeOrders = data;
@@ -43,6 +57,8 @@ export class FrontHouseComponent implements OnInit {
     this.setRefresh();
   }
   
+  firstLoad: boolean = true;
+
   unpaidOrders: string[] = [];
 
   completeOrders: string[] = [];
@@ -55,8 +71,9 @@ export class FrontHouseComponent implements OnInit {
   ngOnInit() {
   }
 
-  viewOrder(orderNum, year, month, day){
-    this.serverConnect.toServer('getOrderDetails', orderNum, year, month, day);
+  viewOrder(orderNum){
+    console.log(orderNum);
+    this.serverConnect.toServer('getOrderDetails', orderNum, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 
   setRefresh(){

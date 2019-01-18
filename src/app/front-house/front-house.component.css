@@ -1,7 +1,7 @@
 .content {
   height: 100%;
   width: 100%;
-  min-height: 730px;
+  min-height: 700px;
   display: flex;
 }
 .content .wrapper {
@@ -37,7 +37,7 @@
   font-size: 30px;
 }
 .content .wrapper .ordersBox .viewport {
-  height: calc(90% - 100px);
+  height: calc(95% - 100px);
   width: 90%;
   margin: 0 auto;
   background-color: white;
@@ -67,6 +67,53 @@
 .content .wrapper .right .orderDetailsBox {
   height: calc(100% - 200px);
   width: 100%;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport {
+  height: calc(100% - 95px);
+  width: 100%;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .orderHeader {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .orderHeader .numberBox {
+  height: 50px;
+  font-size: 50px;
+  margin-left: 40px;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .orderHeader .completedMark {
+  height: 50px;
+  width: 100px;
+  margin-left: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 0 1px black;
+  background-color: gold;
+  opacity: .8;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .orderHeader .hidden {
+  display: none;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem .singleItemBox {
+  height: 50px;
+  width: 90%;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem .singleItemBox .singleItemName {
+  font-size: 30px;
 }
 .content .wrapper .right .orderPymtBox {
   height: 200px;

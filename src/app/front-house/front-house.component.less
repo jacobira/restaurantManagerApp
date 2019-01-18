@@ -1,7 +1,7 @@
 .content {
     height: 100%;
     width: 100%;
-    min-height: 730px;
+    min-height: 700px;
     display: flex;
 
     .wrapper {
@@ -40,7 +40,7 @@
             }
 
             .viewport {
-                height: ~"calc(90% - 100px)";
+                height: ~"calc(95% - 100px)";
                 width: 90%;
                 margin: 0 auto;
                 background-color: white;
@@ -77,6 +77,60 @@
             .orderDetailsBox {
                 height: ~"calc(100% - 200px)";
                 width: 100%;
+
+                .detailsViewport {
+                    height: ~"calc(100% - 95px)";
+                    width: 100%;
+
+                    .orderHeader {
+                        height: 75px;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+
+                        .numberBox {
+                            height: 50px;
+                            font-size: 50px;
+                            margin-left: 40px;
+                        }
+
+                        .completedMark {
+                            height: 50px;
+                            width: 100px;
+                            margin-left: 100px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            text-shadow: 0 0 1px black;
+                            background-color: gold;
+                            opacity: .8;
+                        }
+                        .hidden {
+                            display: none;
+                        }
+                    }
+
+                    .singleItem {
+                        height: 60px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .singleItemBox {
+                            height: 50px;
+                            width: 90%;
+                            background-color: lightgray;
+                            display: flex;
+                            align-items: center;
+
+                            .singleItemName {
+                                font-size: 30px;
+                            }
+                        }
+                    }
+                }
             }
 
             .orderPymtBox {

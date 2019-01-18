@@ -1,22 +1,21 @@
 .content {
   height: 100%;
   width: 600px;
-  min-height: 730px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .content .wrapper {
+  margin-top: 100px;
   width: 550px;
 }
 .content .wrapper .heading {
-  height: 50px;
   font-size: 30px;
   text-align: center;
 }
 .content .wrapper .menuItems {
-  height: 400px;
+  height: 380px;
   display: flex;
 }
 .content .wrapper .menuItems div {
@@ -28,7 +27,7 @@
   width: 250px;
   border-radius: 5px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 10px;
   box-shadow: 0 0 5px black;
   cursor: pointer;
   outline: none;
@@ -48,7 +47,7 @@
 }
 .content .wrapper .mngrItems .mngrFncBtn {
   height: 100px;
-  width: 300px;
+  width: 525px;
   border-radius: 5px;
   box-shadow: 0 0 5px black;
   background-color: lightcoral;

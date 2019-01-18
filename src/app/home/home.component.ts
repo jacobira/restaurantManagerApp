@@ -9,14 +9,19 @@ import { Socket } from 'ngx-socket-io';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private serverConnect: ServerConnectService, private socket: Socket) { }
+  constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
+
+  }
 
 
   ngOnInit() {
-    
+    this.user = this.serverConnect.currUser;
   }
 
   getOpenOrders(){
     this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
+
+  user: string;
+  
 }

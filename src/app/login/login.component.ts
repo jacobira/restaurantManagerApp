@@ -10,24 +10,29 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private serverConnect: ServerConnectService, private socket: Socket, private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  submitIdInput(id){
-    this.serverConnect.toServer("validate", id);
+  constructor(private serverConnect: ServerConnectService, private socket: Socket, private router: Router) {
     this.socket.on("accessGrant", (mngr)=>{
       this.serverConnect.validated = true;
       if(mngr == true){
         this.serverConnect.mngr = true;
       };
-      this.router.navigate(["/", "home"]);
+      this.serverConnect.toServer('getCurrUserName');
+      this.socket.on('currUserNameDump', (user)=>{
+        this.serverConnect.currUser = user;
+        this.router.navigate(["/", "home"]);
+      });
     });
     this.socket.on("accessDeny", ()=>{
       console.log("Incorrect login information.");
       document.getElementById("incorrect").classList.remove("hidden");
       document.getElementById("inputBox").classList.add("outline");
     });
+  }
+
+  ngOnInit() {
+  }
+
+  submitIdInput(id){
+    this.serverConnect.toServer("validate", id);
   }
 }
