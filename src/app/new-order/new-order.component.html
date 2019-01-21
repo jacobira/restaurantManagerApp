@@ -1,8 +1,76 @@
 <div class="container">
   <div class="left">
-    
+    <div class="menuItemBox">
+      <div class="category" id="burgers">
+        <div class="label">
+          Burgers
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div class="item" *ngFor="let item of burgersItems">
+        
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="category" id="salads">
+        <div class="label">
+          Salads
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div class="item" *ngFor="let item of saladsItems">
+
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="category" id="sides">
+        <div class="label">
+          Sides
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div class="item" *ngFor="let item of sidesItems">
+        
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="category" id="beverages">
+        <div class="label">
+          Beverages
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div class="item" *ngFor="let item of beveragesItems">
+        
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    </div>
   </div>
   <div class="right">
+    <div class="top">
+      <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+        <div class="item">
+          <div class="itemBox">
 
+          </div>
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div> 
+    <div class="bottom">
+      <div class="bottomLeft">
+        <div class="submitBtn">
+          <div class="text">
+            Submit
+          </div>
+        </div>
+      </div>
+      <div class="bottomRight">
+        <div class="totalsBox">
+          <div class="orderNum">
+
+          </div>
+          <div class="totals">
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

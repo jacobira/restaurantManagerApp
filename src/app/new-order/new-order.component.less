@@ -1,0 +1,123 @@
+.container {
+    height: ~"calc(100% - 75px)";
+    width: 100%;
+    display: flex;
+    padding-top: 75px;
+
+    .left {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .menuItemBox {
+            height: 95%;
+            width: 95%;
+            display: flex;
+
+            .category {
+                height: 100%;
+                width: 25%;
+
+                .label {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .viewport {
+                    height: 100%;
+                    width: 100%;
+
+                    .item {
+                        height: 100px;
+                        width: 95%;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                        background-color: lightgreen
+                    }
+                }
+            }
+        }
+    }
+
+    .right {
+        height: 100%;
+        width: 30%;
+
+        .top {
+            height: ~"calc(100% - 100px)";
+            width: 100%;
+
+            .viewport {
+                height: 100%;
+                width: 100%;
+
+                .item {
+                    height: 75px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .itemBox {
+                    height: 60px;
+                    width: 95%;
+                    background-color: lightblue;
+                }
+            }
+        }
+
+        .bottom {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            background-color: lightgray;
+
+            .bottomLeft {
+                height: 100%;
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .submitBtn {
+                    height: 80%;
+                    width: 80%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: 0 0 5px black;
+                    background-color: lightgreen;
+                    cursor: pointer;
+
+                    .text {
+                        font-size: 30px;
+                    }
+                }
+            }
+
+            .bottomRight {
+                height: 100%;
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: lightblue;
+
+                .totalsBox{
+
+
+                    .orderNum {
+
+                    }
+
+                    .totals {
+
+                    }
+                }
+            }
+        }
+    }
+}

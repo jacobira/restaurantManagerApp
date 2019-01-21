@@ -1,24 +1,37 @@
 <div class="content">
   <div class="wrapper">
     <div class="heading">
-      Welcome to Efficient, {{user}}
+      Welcome to Efficient 1.0
     </div>
     <div class="menuItems">
-      <div class="frontHouse">
+      <div class="frontHouse sec">
         <div class="btn" routerLink="/frontHouse">
-          Front of House
+          <div class="btnContent">
+            <div class="icon"></div>
+            <div class="label">
+                Front of House
+            </div>
+          </div>
         </div>
       </div>
-      <div class="kitchen">
+      <div class="kitchen sec">
         <div class="btn" routerLink="/kitchen" (click)="getOpenOrders()">
-          Kitchen
+          <div class="btnContent">
+            <div class="icon"></div>
+            <div class="label">
+                Kitchen
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mngrItems" id="mngr">
-      <div class="mngrFncBtn" routerLink="/manager">
-        <div class="label">Manager Functions</div>
-        <div class="lockIcon"></div>
+  </div>
+  <div class="mngrItems sec" id="mngr">
+    <div class="mngrFncBtn" routerLink="/manager">
+      <div class="btnContent">
+        <div class="icon"></div>
+        <div class="label">
+            Manager Functions
+        </div>
       </div>
     </div>
   </div>

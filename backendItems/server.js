@@ -149,11 +149,10 @@ io.on('connection', function(socket){
     socket.on('getMenuItems', function(){
         if(access == true){
             var getMenuItemsQuery = format('SELECT * FROM menuitems');
-            var menuItems;
             myClient.query(getMenuItemsQuery, function(err,result){
                 if(err){console.log(err)};
                 console.log(result.rows);
-                menuItems = result.rows;
+                var menuItems = JSON.stringify(result.rows);
                 socket.emit('menuItemsDump', menuItems);
             });   
         }

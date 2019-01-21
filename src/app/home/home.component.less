@@ -19,16 +19,16 @@
             height: 380px;
             display: flex;
     
-            div {
+            .sec {
                 height: 100%;
                 width: 50%;
     
                 .btn {
                     height: 350px;
                     width: 250px;
-                    border-radius: 5px;
+                    // border-radius: 5px;
                     margin: 0 auto;
-                    margin-top: 10px;
+                    margin-top: 18px;
                     box-shadow: 0 0 5px black;
                     cursor: pointer;
                     outline: none;  
@@ -39,7 +39,27 @@
     
                 .btn {
                     background-color: lightgreen;
-                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .btnContent {
+                        
+                        .icon {
+                            height: 200px;
+                            width: 170px;
+                            margin: 0 auto;
+                            margin-left: 25px;
+                            margin-bottom: 20px;
+                            background-image: url('../media/waiterIcon.png');
+                            background-size: cover;
+                        }
+                        .label {
+                            margin: 0 auto;
+                            text-align: center;
+                            font-weight: bold;
+                        }
+                    }
                 }
             }
     
@@ -47,7 +67,27 @@
     
                 .btn {
                     background-color: lightblue;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .btnContent {
+
+                        .icon {
+                            height: 200px;
+                            width: 200px;
+                            margin: 0 auto;
+                            margin-bottom: 20px;
+                            background-image: url('../media/kitchenIcon.png');
+                            background-size: cover;
+                        }
     
+                        .label {
+                            margin: 0 auto;
+                            text-align: center;
+                            font-weight: bold;
+                        }
+                    }
                 }
             }
         }
@@ -62,11 +102,21 @@
             .mngrFncBtn {
                 height: 100px;
                 width: 525px;
-                border-radius: 5px;
+                // border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 box-shadow: 0 0 5px black;
                 background-color: lightcoral;
                 cursor: pointer;
                 outline: none;
+
+                .icon {
+                    
+                }
+                .label {
+                   font-weight: bold; 
+                }
             }
         }
     }

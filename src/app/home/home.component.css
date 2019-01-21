@@ -18,25 +18,57 @@
   height: 380px;
   display: flex;
 }
-.content .wrapper .menuItems div {
+.content .wrapper .menuItems .sec {
   height: 100%;
   width: 50%;
 }
-.content .wrapper .menuItems div .btn {
+.content .wrapper .menuItems .sec .btn {
   height: 350px;
   width: 250px;
-  border-radius: 5px;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 18px;
   box-shadow: 0 0 5px black;
   cursor: pointer;
   outline: none;
 }
 .content .wrapper .menuItems .frontHouse .btn {
   background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .menuItems .frontHouse .btn .btnContent .icon {
+  height: 200px;
+  width: 170px;
+  margin: 0 auto;
+  margin-left: 25px;
+  margin-bottom: 20px;
+  background-image: url('../media/waiterIcon.png');
+  background-size: cover;
+}
+.content .wrapper .menuItems .frontHouse .btn .btnContent .label {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
 }
 .content .wrapper .menuItems .kitchen .btn {
   background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .menuItems .kitchen .btn .btnContent .icon {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background-image: url('../media/kitchenIcon.png');
+  background-size: cover;
+}
+.content .wrapper .menuItems .kitchen .btn .btnContent .label {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
 }
 .content .wrapper .mngrItems {
   height: 120px;
@@ -48,9 +80,14 @@
 .content .wrapper .mngrItems .mngrFncBtn {
   height: 100px;
   width: 525px;
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 0 5px black;
   background-color: lightcoral;
   cursor: pointer;
   outline: none;
+}
+.content .wrapper .mngrItems .mngrFncBtn .label {
+  font-weight: bold;
 }

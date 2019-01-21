@@ -1,0 +1,95 @@
+.container {
+  height: calc(100% - 75px);
+  width: 100%;
+  display: flex;
+  padding-top: 75px;
+}
+.container .left {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .left .menuItemBox {
+  height: 95%;
+  width: 95%;
+  display: flex;
+}
+.container .left .menuItemBox .category {
+  height: 100%;
+  width: 25%;
+}
+.container .left .menuItemBox .category .label {
+  width: 100%;
+  text-align: center;
+}
+.container .left .menuItemBox .category .viewport {
+  height: 100%;
+  width: 100%;
+}
+.container .left .menuItemBox .category .viewport .item {
+  height: 100px;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: lightgreen;
+}
+.container .right {
+  height: 100%;
+  width: 30%;
+}
+.container .right .top {
+  height: calc(100% - 100px);
+  width: 100%;
+}
+.container .right .top .viewport {
+  height: 100%;
+  width: 100%;
+}
+.container .right .top .viewport .item {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .right .top .viewport .itemBox {
+  height: 60px;
+  width: 95%;
+  background-color: lightblue;
+}
+.container .right .bottom {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  background-color: lightgray;
+}
+.container .right .bottom .bottomLeft {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .right .bottom .bottomLeft .submitBtn {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px black;
+  background-color: lightgreen;
+  cursor: pointer;
+}
+.container .right .bottom .bottomLeft .submitBtn .text {
+  font-size: 30px;
+}
+.container .right .bottom .bottomRight {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+}
