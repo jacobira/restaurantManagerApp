@@ -18,6 +18,19 @@ export class FrontHouseComponent implements OnInit {
         this.viewedOrderItems = JSON.parse(parsedData.items);
         this.viewedOrderComplete = parsedData.complete;
         this.viewedOrderFinalized = parsedData.finalized;
+
+        let subtotal: number = 0;
+        for(let i=0; i<this.viewedOrderItems.length; i++){
+          let item : any = this.viewedOrderItems[i];
+          console.log(item);
+          console.log(typeof(item));
+          subtotal = subtotal + item.price;
+        }
+        this.orderSubtotal = subtotal.toString();
+        this.orderTax = (subtotal * this.taxRate).toFixed(2);
+        this.orderTotal = (subtotal + Number(this.orderTax)).toString();
+
+
         if(this.viewedOrderComplete == true){
           document.getElementById('completedMark').classList.remove('hidden')
         }
@@ -67,6 +80,11 @@ export class FrontHouseComponent implements OnInit {
   viewedOrderItems: string[] = [];
   viewedOrderComplete: boolean = false;
   viewedOrderFinalized: boolean = false;
+
+  orderSubtotal: string = '0';
+  taxRate: number = .07;
+  orderTax: string = '0';
+  orderTotal: string = '0';
 
   ngOnInit() {
   }

@@ -129,4 +129,20 @@
 .content .wrapper .right .orderPymtBox .totals {
   height: 100%;
   width: 30%;
+  font-size: 30px;
+}
+.content .wrapper .right .orderPymtBox .totals .subtotal {
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+}
+.content .wrapper .right .orderPymtBox .totals .tax {
+  opacity: 0.8;
+  display: flex;
+  justify-content: space-between;
+}
+.content .wrapper .right .orderPymtBox .totals .grandTotal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
 }

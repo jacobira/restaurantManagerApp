@@ -60,10 +60,10 @@ export class NewOrderComponent implements OnInit {
 
   addToOrder(name, price, build){
     this.orderBuild.push({
-      'name': name,
-      'price': price,
-      'build': build,
-      'notes': ''
+      "name": name,
+      "price": price,
+      "build": build,
+      "notes": ''
     });
     console.log(name);
   }
