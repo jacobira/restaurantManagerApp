@@ -138,11 +138,15 @@ io.on('connection', function(socket){
         if(access == true){
             var data = JSON.parse(preParseData);
             var getOrderDetailsQuery = format(`SELECT * FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND ordernum = '${data.data}'`);
+                                        AND day = '${data.day}' AND ordernum = ${data.data}`);
             myClient.query(getOrderDetailsQuery, function(err,result){
                 if(err){console.log(err)};
-                var orderDetails = JSON.stringify(result.rows[0]);
-                socket.emit('orderDetailsDump', orderDetails);
+                if(result){
+                    if(result.rows.length > 0){
+                        var orderDetails = JSON.stringify(result.rows[0]);
+                        socket.emit('orderDetailsDump', orderDetails);
+                    }
+                }
             });
         }
     }); 
@@ -183,7 +187,7 @@ io.on('connection', function(socket){
                 }
                 newNum = ++highestNum;
                 var submitOrderCmd = format(`INSERT INTO orderhistory (year, month, day, ordernum, items, complete, finalized) 
-                                        VALUES ('${data.year}','${data.month}','${data.day}','${newNum}','${data.data}', false, false)`);
+                                        VALUES ('${data.year}','${data.month}','${data.day}',${newNum},'${data.data}', false, false)`);
                 
                 myClient.query(submitOrderCmd, function(err){
                     if(err){console.log(err)};

@@ -22,7 +22,7 @@
           Salads
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-          <div class="item" *ngFor="let item of saladsItems">
+          <div class="item" *ngFor="let item of saladsItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
               {{item.name}}
             </div>
@@ -38,7 +38,7 @@
           Sides
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-          <div class="item" *ngFor="let item of sidesItems">
+          <div class="item" *ngFor="let item of sidesItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
               {{item.name}}
             </div>
@@ -54,7 +54,7 @@
           Beverages
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-          <div class="item" *ngFor="let item of beveragesItems">
+          <div class="item" *ngFor="let item of beveragesItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
               {{item.name}}
             </div>

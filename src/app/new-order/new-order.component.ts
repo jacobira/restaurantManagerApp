@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerConnectService } from '../services/server-connect.service';
 import { Socket } from 'ngx-socket-io';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-order',
@@ -9,7 +10,7 @@ import { Socket } from 'ngx-socket-io';
 })
 export class NewOrderComponent implements OnInit {
 
-  constructor(private serverConnect: ServerConnectService, private socket: Socket) {
+  constructor(private serverConnect: ServerConnectService, private socket: Socket, private router: Router) {
     this.socket.emit('getMenuItems');
     this.socket.on('menuItemsDump', (preParseData)=>{
       console.log('menu items dump received');
@@ -73,6 +74,7 @@ export class NewOrderComponent implements OnInit {
     //   orderBuildToShip.push(JSON.stringify(item));
     // });
     this.serverConnect.toServer("submitOrder", JSON.stringify(this.orderBuild), this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
+    this.router.navigate(["/","frontHouse"]);
   }
 
   currentMenu: any[] = [];
