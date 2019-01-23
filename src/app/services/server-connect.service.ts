@@ -41,15 +41,15 @@ export class ServerConnectService {
   toServer(event, data?, year?, month?, day?){
     if(data !== -1){
       if(year && month && day){
-        this.socket.emit(event, `{"data": "${data}", "year": "${year}", "month": "${month}", "day": "${day}"}`);
+        this.socket.emit(event, JSON.stringify({"data": data, "year": year, "month": month, "day": day}));
       }
       else{
-        this.socket.emit(event, `{"data": "${data}"}`);
+        this.socket.emit(event, JSON.stringify({"data": data}));
       }
     }
     if(data === -1){
       if(year && month && day) {
-        this.socket.emit(event, `{"year": "${year}", "month": "${month}", "day": "${day}"}`);
+        this.socket.emit(event, JSON.stringify({"year": year, "month": month, "day": day}));
       }
       else {
         this.socket.emit(event);

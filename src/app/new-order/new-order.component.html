@@ -6,56 +6,86 @@
           Burgers
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-          <div class="item" *ngFor="let item of burgersItems">
-        
+          <div class="item" *ngFor="let item of burgersItems" (click)="addToOrder(item.name, item.price, item.build)">
+            <div class="itemName">
+              {{item.name}}
+            </div>
+            <div class="itemBuild hidden">
+
+            </div>
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
+
       <div class="category" id="salads">
         <div class="label">
           Salads
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of saladsItems">
+            <div class="itemName">
+              {{item.name}}
+            </div>
+            <div class="itemBuild hidden">
 
+            </div>
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
+
       <div class="category" id="sides">
         <div class="label">
           Sides
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of sidesItems">
-        
+            <div class="itemName">
+              {{item.name}}
+            </div>
+            <div class="itemBuild hidden">
+
+            </div>
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
+
       <div class="category" id="beverages">
         <div class="label">
           Beverages
         </div>
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of beveragesItems">
-        
+            <div class="itemName">
+              {{item.name}}
+            </div>
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
+
     </div>
   </div>
+
   <div class="right">
     <div class="top">
       <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-        <div class="item">
+        <div class="item" *ngFor="let item of orderBuild">
           <div class="itemBox">
-
+            <div class="itemName">
+              {{item.price}} - {{item.name}}
+            </div>
+            <div class="itemBuild">
+              {{item.build}}
+            </div>
+          </div>
+          <div class="itemNotes">
+            <input [(ngModel)]="item.notes">
           </div>
         </div>
       </cdk-virtual-scroll-viewport>
     </div> 
     <div class="bottom">
       <div class="bottomLeft">
-        <div class="submitBtn">
+        <div class="submitBtn" (click)="submitOrder()">
           <div class="text">
             Submit
           </div>

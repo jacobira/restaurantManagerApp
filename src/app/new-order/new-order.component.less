@@ -34,7 +34,15 @@
                         width: 95%;
                         margin: 0 auto;
                         margin-top: 10px;
-                        background-color: lightgreen
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: lightgreen;
+                        cursor: pointer;
+
+                        .itemName {
+
+                        }
                     }
                 }
             }
@@ -56,15 +64,32 @@
                 .item {
                     height: 75px;
                     width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
 
-                .itemBox {
-                    height: 60px;
-                    width: 95%;
-                    background-color: lightblue;
+                    .itemBox {
+                        height: 50px;
+                        width: 100%;
+                        margin-top: 10px;
+                        background-color: lightblue;
+
+                        .itemName {
+                            font-weight: bold;
+                        }
+                        .itemBuild {
+                            font-size: 14px;
+                            font-style: italic;
+                            display: flex;
+                        }
+                    }
+            
+                    .itemNotes {
+                        height: 10px;
+                        width: 100%;
+                        margin: 0 auto;
+
+                        input {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }

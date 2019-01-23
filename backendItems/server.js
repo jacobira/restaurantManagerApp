@@ -159,29 +159,37 @@ io.on('connection', function(socket){
     });
     socket.on('getNewOrderNum', function(preParseData){
         if(access == true){
-            var data = JSON.parse(preParseData);
-            var getUsedNumsQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' ORDER BY ordernum ASC`);
-            var newNum;
-            myClient.query(getUsedNumsQuery, function(err,result){
-                if(err){console.log(err)};
-                console.log(result.rows);
-                var highestNum = 0;
-                for(var i=0; i<result.rows.length; i++){
-                    if(Number(result.rows[i].ordernum) > highestNum){
-                        highestNum = Number(result.rows[i].orderNum);
-                    }
-                }
-                newNum = highestNum++;
-                socket.emit('newOrderNumDump', newNum);
-            });
+            
         }
     });
     socket.on('submitOrder', function(preParseData){
         if(access == true){
+            // console.log("This is the pre parse data:" + preParseData);
             var data = JSON.parse(preParseData);
-            var submitOrderQuery = format(`INSERT INTO orderhistory (year, month, day, ordernum, items, complete, finalized) 
-                                        VALUES ('${data.year}','${data.month}','${data.day}','${data.data}','${data.items}', false, false)`);
+            console.log(data);
+            var newNum = 0;
+    
+            var getUsedNumsQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
+                                        AND day = '${data.day}' ORDER BY ordernum ASC`);
+            myClient.query(getUsedNumsQuery, function(err,result){
+                if(err){console.log("There was an error with getting info from DB: " + err)};
+                var highestNum = 0;
+                console.log('query got a result');
+                for(var i=0; i<result.rows.length; i++){
+                    if(result.rows[i].ordernum > highestNum){
+                        highestNum = result.rows[i].ordernum;
+                        console.log('Conditional being used');
+                    }
+                }
+                newNum = ++highestNum;
+                var submitOrderCmd = format(`INSERT INTO orderhistory (year, month, day, ordernum, items, complete, finalized) 
+                                        VALUES ('${data.year}','${data.month}','${data.day}','${newNum}','${data.data}', false, false)`);
+                
+                myClient.query(submitOrderCmd, function(err){
+                    if(err){console.log(err)};
+                    console.log("Order submitted.");
+                });
+            });
         }
     });
     socket.on('editOrder', function(data){
