@@ -22,13 +22,11 @@ export class FrontHouseComponent implements OnInit {
         let subtotal: number = 0;
         for(let i=0; i<this.viewedOrderItems.length; i++){
           let item : any = this.viewedOrderItems[i];
-          console.log(item);
-          console.log(typeof(item));
           subtotal = subtotal + item.price;
         }
-        this.orderSubtotal = subtotal.toString();
+        this.orderSubtotal = subtotal.toFixed(2).toString();
         this.orderTax = (subtotal * this.taxRate).toFixed(2);
-        this.orderTotal = (subtotal + Number(this.orderTax)).toString();
+        this.orderTotal = (subtotal + Number(this.orderTax)).toFixed(2).toString();
 
 
         if(this.viewedOrderComplete == true){

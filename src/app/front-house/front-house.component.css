@@ -1,7 +1,6 @@
 .content {
   height: 100%;
   width: 100%;
-  min-height: 700px;
   display: flex;
 }
 .content .wrapper {
@@ -69,7 +68,7 @@
   width: 100%;
 }
 .content .wrapper .right .orderDetailsBox .detailsViewport {
-  height: calc(100% - 95px);
+  height: 100%;
   width: 100%;
 }
 .content .wrapper .right .orderDetailsBox .detailsViewport .orderHeader {

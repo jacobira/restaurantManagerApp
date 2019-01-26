@@ -52,17 +52,27 @@
   width: 100%;
 }
 .container .right .top .viewport .item {
-  height: 75px;
+  height: 80px;
   width: 100%;
 }
 .container .right .top .viewport .item .itemBox {
-  height: 50px;
+  height: 55px;
   width: 100%;
   margin-top: 10px;
   background-color: lightblue;
 }
 .container .right .top .viewport .item .itemBox .itemName {
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.container .right .top .viewport .item .itemBox .itemName .removeBtn {
+  font-weight: normal;
+  margin-top: 5px;
+  margin-right: 5px;
+  border-radius: 2px;
+  background-color: lightcoral;
+  cursor: pointer;
 }
 .container .right .top .viewport .item .itemBox .itemBuild {
   font-size: 14px;
@@ -110,4 +120,7 @@
   justify-content: center;
   align-items: center;
   background-color: lightblue;
+}
+.container .right .bottom .bottomRight .totalsBox .totals {
+  font-size: 30px;
 }

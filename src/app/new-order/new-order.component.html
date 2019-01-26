@@ -71,7 +71,12 @@
         <div class="item" *ngFor="let item of orderBuild">
           <div class="itemBox">
             <div class="itemName">
-              {{item.price}} - {{item.name}}
+              <div>
+                  {{item.price}} - {{item.name}}
+              </div>
+              <div class="removeBtn" (click)="removeItem(item.itemNum)">
+                Remove
+              </div>
             </div>
             <div class="itemBuild">
               {{item.build}}
@@ -93,11 +98,13 @@
       </div>
       <div class="bottomRight">
         <div class="totalsBox">
-          <div class="orderNum">
-
-          </div>
           <div class="totals">
-
+            <div>
+              Subtotal:
+            </div>
+            <div class="subtotal">
+              ${{orderSubtotal}}
+            </div>
           </div>
         </div>
       </div>

@@ -63,8 +63,15 @@ export class NewOrderComponent implements OnInit {
       "name": name,
       "price": price,
       "build": build,
-      "notes": ''
+      "notes": '',
+      "itemNum": this.idCounter
     });
+    this.idCounter++;
+    let subtotal = 0;
+    for(let i=0; i<this.orderBuild.length; i++){
+      subtotal = subtotal + this.orderBuild[i].price;
+    }
+    this.orderSubtotal = subtotal.toFixed(2).toString();
     console.log(name);
   }
 
@@ -77,6 +84,16 @@ export class NewOrderComponent implements OnInit {
     this.router.navigate(["/","frontHouse"]);
   }
 
+  removeItem(item){
+    for(let i=0; i<this.orderBuild.length; i++){
+      if(this.orderBuild[i].itemNum == item){
+        this.orderBuild.splice(i, 1);
+      }
+    }
+  }
+
+  idCounter: number = 1;
+
   currentMenu: any[] = [];
 
   burgersItems: any[] = [];
@@ -85,5 +102,5 @@ export class NewOrderComponent implements OnInit {
   beveragesItems: any[] = [];
 
   orderBuild: any[] = [];
-
+  orderSubtotal: string = '';
 }

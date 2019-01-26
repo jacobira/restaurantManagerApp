@@ -62,17 +62,28 @@
                 width: 100%;
 
                 .item {
-                    height: 75px;
+                    height: 80px;
                     width: 100%;
 
                     .itemBox {
-                        height: 50px;
+                        height: 55px;
                         width: 100%;
                         margin-top: 10px;
                         background-color: lightblue;
 
                         .itemName {
                             font-weight: bold;
+                            display: flex;
+                            justify-content: space-between;
+
+                            .removeBtn {
+                                font-weight: normal;
+                                margin-top: 5px;
+                                margin-right: 5px;
+                                border-radius: 2px;
+                                background-color: lightcoral;
+                                cursor: pointer;
+                            }
                         }
                         .itemBuild {
                             font-size: 14px;
@@ -133,13 +144,8 @@
 
                 .totalsBox{
 
-
-                    .orderNum {
-
-                    }
-
                     .totals {
-
+                        font-size: 30px;
                     }
                 }
             }
