@@ -87,6 +87,7 @@ export class NewOrderComponent implements OnInit {
   removeItem(item){
     for(let i=0; i<this.orderBuild.length; i++){
       if(this.orderBuild[i].itemNum == item){
+        this.orderSubtotal = (Number(this.orderSubtotal) - this.orderBuild[i].price).toString();
         this.orderBuild.splice(i, 1);
       }
     }

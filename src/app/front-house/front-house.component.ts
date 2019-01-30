@@ -33,7 +33,7 @@ export class FrontHouseComponent implements OnInit {
           document.getElementById('completedMark').classList.remove('hidden')
         }
         if(this.viewedOrderComplete == false){
-          if(document.getElementById('completedMar')){
+          if(document.getElementById('completedMark')){
             document.getElementById('completedMark').classList.add('hidden');
           }
         }

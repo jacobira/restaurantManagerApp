@@ -96,21 +96,31 @@
 .container .right .bottom .bottomLeft {
   height: 100%;
   width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .container .right .bottom .bottomLeft .submitBtn {
-  height: 80%;
+  height: 40%;
   width: 80%;
   display: flex;
+  margin: 0 auto;
+  margin-top: 8px;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 5px black;
   background-color: lightgreen;
   cursor: pointer;
+  font-size: 30px;
 }
-.container .right .bottom .bottomLeft .submitBtn .text {
+.container .right .bottom .bottomLeft .cancelBtn {
+  height: 40%;
+  width: 80%;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 8px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px black;
+  background-color: lightcoral;
+  cursor: pointer;
   font-size: 30px;
 }
 .container .right .bottom .bottomRight {
