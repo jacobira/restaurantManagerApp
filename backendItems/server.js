@@ -4,11 +4,11 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server, {'pingInterval': 2000, 'pingTimeout': 86400000});
 
-// PostgreSQL database imports here...
+// PostgreSQL database imports and definitions here...
 var pg = require('pg'); //postgreSQL database
 var format = require('pg-format');
-var PGUSER = 'jacobbaldwin'; // ****change to power_user for deployment****
-var PGDATABASE = 'efficient-test'; // ****change to efficient for deployment****
+var PGUSER = 'power_user';
+var PGDATABASE = 'efficient';
 var dbConfig = {
     user: PGUSER,
     database: PGDATABASE,
