@@ -18,6 +18,9 @@ export class KitchenComponent implements OnInit {
           this.openOrders = data;
           if(data.length == 0){
             document.getElementById('completeBtn').classList.add('faded');
+            this.viewedOrder = {};
+            this.viewedOrderNum = "";
+            this.viewedOrderItems = [];
           }
           if(data.length !== 0){
             document.getElementById('completeBtn').classList.remove('faded');
@@ -43,17 +46,6 @@ export class KitchenComponent implements OnInit {
       }
     });
 
-    this.socket.on('openOrdersDumpAfterComplete', (data)=>{
-      this.openOrders = data;
-      if(data.length == 0){
-        document.getElementById('completeBtn').classList.add('faded');
-      }
-      if(data.length !== 0){
-        document.getElementById('completeBtn').classList.remove('faded');
-      }
-      this.viewOrder(this.openOrders[0]);
-    });
-
     this.socket.on('orderDetailsDump', (data)=>{
       let parsedData = JSON.parse(data);
       if(parsedData !== null){
@@ -69,8 +61,8 @@ export class KitchenComponent implements OnInit {
     });
 
     this.socket.on('orderMarkedComplete', ()=>{
-      this.serverConnect.toServer('getOpenOrdersAfterComplete', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
-                                                      this.serverConnect.currDay);
+      this.firstLoad = true;
+      this.setRefresh();
     });
     this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
                                                       this.serverConnect.currDay);
@@ -84,6 +76,8 @@ export class KitchenComponent implements OnInit {
 
   viewedOrderNum: string = "";
   viewedOrderItems: any[];
+
+  refreshFnc: any;
 
   ngOnInit() {
 
@@ -99,9 +93,11 @@ export class KitchenComponent implements OnInit {
   }
 
   setRefresh(){
-    window.setInterval(()=>{
+    clearTimeout(this.refreshFnc);
+    this.refreshFnc = window.setInterval(()=>{
       this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
                                                         this.serverConnect.currDay);
-    }, 2000);
+    }, 500);
+    this.refreshFnc;
   }
 }

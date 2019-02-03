@@ -1,0 +1,166 @@
+.container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    .wrapper {
+        height: ~"calc(100% - 75px)";
+        width: 100%;
+        margin-top: 75px;
+
+        .top {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .headline {
+                margin-right: 30px;
+                font-size: 30px;
+            }
+            div {
+                select {
+                    height: 30px;
+                    font-size: 20px;
+                    margin-right: 20px;
+                }
+            }
+            .submitSearch {
+                height: 100%;
+                width: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .submitSearchBtn {
+                    height: 30px;
+                    width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                    background-color: lightgreen;
+                    box-shadow: 0 0 5px black;
+                    cursor: pointer;
+                    outline: none;
+                }
+            }
+            .navBack {
+                height: 100%;
+                width: 180px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .navBackBox {
+                    height: 30px;
+                    width: 150px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                    background-color: lightblue;
+                    box-shadow: 0 0 5px black;
+                    cursor: pointer;
+                    outline: none;
+                }
+            }
+            .noOrderHist {
+                height: 100%;
+                width: 280px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .noOrderHistBox {
+                    height: 60px;
+                    width: 250px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    background-color: lightcoral;
+                    outline: none;
+                }
+            }
+            .hidden {
+                display: none;
+            }
+        }
+        .bottom {
+            height: ~"calc(100% - 100px)";
+            width: 100%;
+            display: flex;
+            background-color: lightgray;
+
+            .bottom-left {
+                height: 100%;
+                width: 30%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .ordersViewport {
+                    height: 95%;
+                    width: 90%;
+                    background-color: white;
+
+                    .singleOrder {
+                        height: 60px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .singleOrderBox {
+                            height: 50px;
+                            width: 90%;
+                            background-color: lightblue;
+                            box-shadow: 0 0 5px black;
+                        }
+                    }
+                }
+            }
+
+            .bottom-right {
+                height: 100%;
+                width: 70%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .itemsViewport {
+                    height: ~"calc(95% - 10px)";
+                    width: 90%;
+                    padding-top: 10px;
+                    background-color: white;
+
+                    .singleItem {
+                        height: 60px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .singleItemBox {
+                            height: 50px;
+                            width: 90%;
+                            background-color: lightgray;
+
+                            .itemName {
+                                font-size: 30px;
+                            }
+                            .itemNotes {
+                                height: 20px;
+                                font-size: 16px;
+                                font-style: italic;
+                                margin-left: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

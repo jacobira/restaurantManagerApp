@@ -12,24 +12,50 @@
 .content .wrapper .orderListSec {
   height: 100%;
   width: 30%;
+  background-color: lightgray;
+}
+.content .wrapper .orderListSec .navHomeSec {
+  height: 60px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
 }
-.content .wrapper .orderListSec .viewport {
-  height: 90%;
+.content .wrapper .orderListSec .navHomeSec .navHomeBtn {
+  height: 40px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+  outline: none;
+}
+.content .wrapper .orderListSec .navHomeSec .navHomeBtn .btnText {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 2px black;
+}
+.content .wrapper .orderListSec .viewportWrapper {
+  height: calc(100% - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .orderListSec .viewportWrapper .viewport {
+  height: 95%;
   width: 90%;
   background-color: white;
 }
-.content .wrapper .orderListSec .viewport .singleOrder {
+.content .wrapper .orderListSec .viewportWrapper .viewport .singleOrder {
   height: 75px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content .wrapper .orderListSec .viewport .singleOrder .box {
+.content .wrapper .orderListSec .viewportWrapper .viewport .singleOrder .box {
   height: 50px;
   width: 90%;
   font-size: 40px;

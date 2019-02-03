@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="infoBox">
+      <div class="label">
+        <div class="text">
+          Users in System:
+        </div>
+      </div>
+      <div class="usersSec">
+        <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+          <div class="singleUser" *ngFor="let user of currentUsers" id="singleUser">
+            <div class="singleUserBox" id="{{user.userid}}" (click)="selectUser(user.userid)"> 
+              <div class="userName">
+                {{ user.name }}
+              </div>
+              <div class="userId">
+                User ID: {{ user.userid }}
+              </div>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="removeSec">
+        <div class="removeBtn" (click)="removeUser()">
+          <div>
+            Remove User
+          </div>
+        </div>
+        <div class="backBtn" routerLink="/manager">
+          <div>
+            Manager Page
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

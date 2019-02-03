@@ -16,6 +16,9 @@ import { NewOrderComponent } from './new-order/new-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MngrAuthGuardService } from './services/mngr-auth-guard.service';
 import { ServerConnectService } from './services/server-connect.service';
+import { AddUserComponent } from './add-user/add-user.component';
+import { OrderHistSearchComponent } from './order-hist-search/order-hist-search.component';
+import { RemoveUserComponent } from './remove-user/remove-user.component';
 
 // if accessing database remotely during development...
 // const config: SocketIoConfig = {url: 'http://52.15.149.88', options: {}};
@@ -28,6 +31,9 @@ const appRoutes: Routes = [
   {path: 'newOrder', component: NewOrderComponent, canActivate: [AuthGuardService]},
   {path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuardService]},
   {path: 'manager', component: ManagerComponent, canActivate: [MngrAuthGuardService]},
+  {path: 'addUser', component: AddUserComponent, canActivate: [MngrAuthGuardService]},
+  {path: 'orderHistSearch', component: OrderHistSearchComponent, canActivate: [MngrAuthGuardService]},
+  {path: 'removeUser', component: RemoveUserComponent, canActivate: [MngrAuthGuardService]},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ]
 
@@ -39,7 +45,10 @@ const appRoutes: Routes = [
     FrontHouseComponent,
     KitchenComponent,
     ManagerComponent,
-    NewOrderComponent
+    NewOrderComponent,
+    AddUserComponent,
+    OrderHistSearchComponent,
+    RemoveUserComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {useHash: true}),

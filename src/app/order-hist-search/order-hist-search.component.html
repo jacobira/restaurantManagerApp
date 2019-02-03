@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="top">
+      <div class="headline">
+        Get Order History for
+      </div>
+      <div class="day">
+        <select [(ngModel)]="selectedDay">
+          <option *ngFor="let day of days">
+            {{ day }}
+          </option>
+        </select>
+      </div>
+      <div class="month">
+        <select [(ngModel)]="selectedMonth">
+          <option *ngFor="let month of months">
+            {{ month }}
+          </option>
+        </select>
+      </div>
+      <div class="year">
+        <select [(ngModel)]="selectedYear">
+          <option *ngFor="let year of years">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+      <div class="submitSearch">
+        <div class="submitSearchBtn">
+          <div class="text" (click)="orderHistSearch()">
+            GO
+          </div>
+        </div>
+      </div>
+      <div class="navBack">
+        <div class="navBackBox" routerLink="/manager">
+          <div class="text">
+            Manager Page
+          </div>
+        </div>
+      </div>
+      <div class="noOrderHist hidden" id="noOrderHist">
+        <div class="noOrderHistBox">
+          <div class="text">
+            No Order History Found
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="bottom-left">
+        <cdk-virtual-scroll-viewport itemSize="50" class="ordersViewport">
+          <div class="singleOrder" *ngFor="let order of orderHistoryResult" (click)="viewOrder(order.ordernum)">
+            <div class="singleOrderBox">
+              {{ order.ordernum }}
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="bottom-right">
+        <cdk-virtual-scroll-viewport itemSize="50" class="itemsViewport">
+          <div class="singleItem" *ngFor="let item of viewedOrderItems">
+            <div class="singleItemBox">
+              <div class="itemName">
+                + {{ item.name }}
+              </div>
+              <div class="itemNotes">
+                {{ item.notes }}
+              </div>
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    </div>
+  </div>
+</div>

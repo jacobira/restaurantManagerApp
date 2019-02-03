@@ -1,6 +1,8 @@
 .container {
   height: 100%;
   z-index: 1;
+  min-height: 600px;
+  min-width: 700px;
 }
 .container .banner {
   height: 75px;

@@ -12,31 +12,61 @@
         .orderListSec {
             height: 100%;
             width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: lightgray;
-    
-            .viewport {
-                height: 90%;
-                width: 90%;
-                background-color: white;
-    
-                .singleOrder {
-                    height: 75px;
-                    width: 100%;
+
+            .navHomeSec {
+                height: 60px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .navHomeBtn {
+                    height: 40px;
+                    width: 90%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    background-color: lightblue;
+                    box-shadow: 0 0 5px black;
+                    cursor: pointer;
+                    outline: none;
+
+                    .btnText {
+                        font-size: 30px;
+                        color: white;
+                        text-shadow: 0 0 2px black;
+                    }
+                }
+            }
     
-                    .box {
-                        height: 50px;
-                        width: 90%;
-                        font-size: 40px;
-                        // border-radius: 5px;
-                        box-shadow: 0 0 1px black;
-                        background-color: lightgreen;
-                        cursor: pointer;
+            .viewportWrapper {
+                height: ~"calc(100% - 60px)";
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .viewport {
+                    height: 95%;
+                    width: 90%;
+                    background-color: white;
+        
+                    .singleOrder {
+                        height: 75px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+        
+                        .box {
+                            height: 50px;
+                            width: 90%;
+                            font-size: 40px;
+                            // border-radius: 5px;
+                            box-shadow: 0 0 1px black;
+                            background-color: lightgreen;
+                            cursor: pointer;
+                        }
                     }
                 }
             }

@@ -1,13 +1,22 @@
 <div class="content">
   <div class="wrapper">
     <div class="orderListSec">
-      <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
-        <div class="singleOrder" *cdkVirtualFor="let order of openOrders">
-          <div class="box" (click)="viewOrder(order)">
-            {{order}}
+      <div class="navHomeSec">
+        <div class="navHomeBtn" routerLink="/home">
+          <div class="btnText">
+              Home Page
           </div>
         </div>
-      </cdk-virtual-scroll-viewport>
+      </div>
+      <div class="viewportWrapper">
+        <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
+          <div class="singleOrder" *cdkVirtualFor="let order of openOrders">
+            <div class="box" (click)="viewOrder(order)">
+              {{order}}
+            </div>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
     </div>
     <div class="orderDisplaySec">
       <div class="heading">

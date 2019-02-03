@@ -2,10 +2,19 @@
   <div class="wrapper">
 
     <div class="ordersBox">
-      <div class="newOrderSec">
-        <div class="newOrderBtn" routerLink="/newOrder">
-          <div class="btnText">
-              New Order
+      <div class="btnArea">
+        <div class="newOrderSec">
+          <div class="newOrderBtn" routerLink="/newOrder">
+            <div class="btnText">
+                New Order
+            </div>
+          </div>
+        </div>
+        <div class="navHomeSec">
+          <div class="navHomeBtn" routerLink="/home">
+            <div class="btnText">
+              Home Page
+            </div>
           </div>
         </div>
       </div>
@@ -33,14 +42,20 @@
           </div>
           <div class="singleItem" *cdkVirtualFor="let item of viewedOrderItems">
             <div class="singleItemBox">
-              <div class="singleItemName">+ {{item.name}}</div>
+              <div class="singleItemBoxWrapper">
+                  <div class="singleItemName">+ {{item.name}}</div>
+                  <div class="singleItemNotes">{{item.notes}}</div>
+              </div>
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
       </div>
       <div class="orderPymtBox">
-        <div class="payOptions">
 
+        <div class="payOptions">
+          <div class="pymtBtn" (click)="orderPaid()">
+            Payment Received
+          </div>
         </div>
         
         <div class="totals">

@@ -1,0 +1,48 @@
+<div class="content">
+  <div class="infoBox">
+    <div class="nameSec Sec">
+      <div>
+        <div class="title">
+            Full Name
+          </div>
+          <input id="nameInput" [(ngModel)]="nameInputValue">
+        </div>
+      </div>
+    <div class="userIdSec">
+      <div>
+        <div class="title">
+          User ID Number (Limit 6 Characters)
+        </div>
+        <input id="userIdInput" maxlength="6" [(ngModel)]="userIdInputValue">
+        <div class="error">
+          <div class="errorBox hidden" id="errorBox">
+            Please Choose a Different User ID
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mngrAuthSec Sec">
+      <div>
+        <div class="title">
+          Manager Permissions?
+        </div>
+        <select id="mngrAuthInput" [(ngModel)]="mngrAuthValue">
+          <option value=true>Yes</option>
+          <option value=false>No</option>
+        </select>
+      </div>
+    </div>
+    <div class="submitSec Sec">
+      <div class="submitBtn btn" (click)="userIdCheck()">
+        <div class="label">
+          Submit Info
+        </div>
+      </div>
+      <div class="mngrPgBtn btn" routerLink="/manager">
+        <div class="label">
+            Back to Manager Page
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

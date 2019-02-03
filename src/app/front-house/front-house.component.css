@@ -14,16 +14,22 @@
   width: 30%;
   background-color: lightgray;
 }
-.content .wrapper .ordersBox .newOrderSec {
+.content .wrapper .ordersBox .btnArea {
   height: 100px;
-  width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
-.content .wrapper .ordersBox .newOrderSec .newOrderBtn {
+.content .wrapper .ordersBox .btnArea .newOrderSec {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .ordersBox .btnArea .newOrderSec .newOrderBtn {
   height: 70px;
   width: 90%;
-  margin-left: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +38,27 @@
   cursor: pointer;
   outline: none;
 }
-.content .wrapper .ordersBox .newOrderSec .newOrderBtn .btnText {
+.content .wrapper .ordersBox .btnArea .newOrderSec .newOrderBtn .btnText {
+  font-size: 30px;
+}
+.content .wrapper .ordersBox .btnArea .navHomeSec {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.content .wrapper .ordersBox .btnArea .navHomeSec .navHomeBtn {
+  height: 70px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px black;
+  background-color: lightblue;
+  cursor: pointer;
+  outline: none;
+}
+.content .wrapper .ordersBox .btnArea .navHomeSec .navHomeBtn .btnText {
   font-size: 30px;
 }
 .content .wrapper .ordersBox .viewport {
@@ -111,8 +137,13 @@
   display: flex;
   align-items: center;
 }
-.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem .singleItemBox .singleItemName {
+.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem .singleItemBox .singleItemBoxWrapper .singleItemName {
   font-size: 30px;
+}
+.content .wrapper .right .orderDetailsBox .detailsViewport .singleItem .singleItemBox .singleItemBoxWrapper .singleItemNotes {
+  font-size: 16px;
+  font-style: italic;
+  margin-left: 50px;
 }
 .content .wrapper .right .orderPymtBox {
   height: 200px;
@@ -124,6 +155,21 @@
   height: 100%;
   width: 70%;
   background-color: #6ebb50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .wrapper .right .orderPymtBox .payOptions .pymtBtn {
+  height: 100px;
+  width: 300px;
+  background-color: lightgreen;
+  box-shadow: 0 0 5px black;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
 }
 .content .wrapper .right .orderPymtBox .totals {
   height: 100%;

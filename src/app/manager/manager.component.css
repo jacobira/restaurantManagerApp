@@ -1,0 +1,62 @@
+.content {
+  height: calc(100% - 75px);
+  width: 100%;
+  padding-top: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .btnSection {
+  height: 50%;
+  width: 50%;
+}
+.content .btnSection .btnBox {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .btnSection .btnBox .btn {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px black;
+  cursor: pointer;
+}
+.content .btnSection .btnBox .btn .txt {
+  font-size: 30px;
+}
+.content .btnSection .btnBox #newUser {
+  background-color: lightblue;
+}
+.content .btnSection .btnBox #orderHist {
+  background-color: lightgreen;
+}
+.content .btnSection .btnBox #removeUser {
+  background-color: lightcoral;
+}
+.content .btnSection .navHome {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .btnSection .navHome .navHomeBtn {
+  height: 50px;
+  width: 200px;
+  background-color: lightblue;
+  box-shadow: 0 0 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.content .btnSection .navHome .navHomeBtn .txt {
+  font-size: 30px;
+  color: white;
+  text-shadow: 0 0 2px black;
+}

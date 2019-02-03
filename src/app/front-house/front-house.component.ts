@@ -63,6 +63,13 @@ export class FrontHouseComponent implements OnInit {
         }
       };
     });
+
+    this.socket.on('finalizedConf', ()=>{
+      console.log('Order marked as paid for and finalized');
+      this.firstLoad = true;
+      this.setRefresh();
+    });
+
     this.serverConnect.toServer('getUnpaidOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth,
                                                         this.serverConnect.currDay);
     this.setRefresh();
@@ -84,6 +91,8 @@ export class FrontHouseComponent implements OnInit {
   orderTax: string = '0';
   orderTotal: string = '0';
 
+  refreshFnc: any;
+
   ngOnInit() {
   }
 
@@ -92,10 +101,16 @@ export class FrontHouseComponent implements OnInit {
     this.serverConnect.toServer('getOrderDetails', orderNum, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 
+  orderPaid(){
+    this.serverConnect.toServer('submitPayment', this.viewedOrder);
+  }
+
   setRefresh(){
-    window.setInterval(()=>{
+    clearTimeout(this.refreshFnc);
+    this.refreshFnc = window.setInterval(()=>{
       this.serverConnect.toServer('getUnpaidOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, 
                                                         this.serverConnect.currDay);
-    }, 2000);
+    }, 500);
+    this.refreshFnc;
   }
 }

@@ -1,0 +1,108 @@
+.container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    min-width: 700px;
+    
+    .wrapper {
+        height: ~"calc(100% - 75px)";
+        width: 100%;
+        margin-top: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .infoBox {
+            height: 70%;
+            width: 50%;
+            background-color: lightgray;
+
+            .label {
+                height: 40px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+            }
+
+            .usersSec {
+                height: ~"calc(100% - 90px)";
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .viewport {
+                    height: 95%;
+                    width: 90%;
+                    background-color: white;
+
+                    .singleUser {
+                        height: 60px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .singleUserBox {
+                            height: 50px;
+                            width: 90%;
+                            font-size: 20px;
+                            background-color: lightblue;
+                            box-shadow: 0 0 5px black;
+                            cursor: pointer;
+                            outline: none;
+
+                            .userName {
+                                font-weight: bold;
+                            }   
+                            .userId {
+
+                            }
+                        }
+
+                        .highlight {
+                            background-color: lightcoral;
+                        }
+                    }
+                }
+            }
+
+            .removeSec {
+                height: 50px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .removeBtn {
+                    height: 40px;
+                    width: 250px;
+                    background-color: lightcoral;
+                    box-shadow: 0 0 5px black;
+                    font-size: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    outline: none;
+                }
+                
+                .backBtn {
+                    height: 40px;
+                    width: 150px;
+                    background-color: lightblue;
+                    box-shadow: 0 0 5px black;
+                    font-size: 20px;
+                    margin-left: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

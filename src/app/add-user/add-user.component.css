@@ -1,0 +1,86 @@
+.content {
+  height: calc(100% - 75px);
+  width: 100%;
+  padding-top: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .infoBox {
+  height: 50%;
+  width: 50%;
+}
+.content .infoBox .Sec {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .infoBox .Sec .title {
+  font-size: 20px;
+}
+.content .infoBox .Sec input {
+  font-size: 40px;
+  outline: none;
+}
+.content .infoBox .Sec select {
+  font-size: 30px;
+  width: 200px;
+}
+.content .infoBox .userIdSec {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .infoBox .userIdSec div .title {
+  font-size: 20px;
+}
+.content .infoBox .userIdSec div input {
+  font-size: 40px;
+  outline: none;
+}
+.content .infoBox .userIdSec div .error {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .infoBox .userIdSec div .error .errorBox {
+  height: 20px;
+  width: 220px;
+  background-color: lightcoral;
+  box-shadow: 0 0 5px black;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+.content .infoBox .userIdSec div .error .hidden {
+  display: none;
+}
+.content .infoBox .submitSec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .infoBox .submitSec .btn {
+  height: 50px;
+  width: 150px;
+  box-shadow: 0 0 5px black;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.content .infoBox .submitSec .submitBtn {
+  background-color: lightgreen;
+  color: white;
+  font-size: 25px;
+  text-shadow: 0 0 3px black;
+}
+.content .infoBox .submitSec .mngrPgBtn {
+  background-color: lightblue;
+}

@@ -32,7 +32,7 @@ io.on('connection', function(socket){
 
     var access = false;
     var mngr = false;
-    var currUser = '';
+    var currUser = "";
     
     socket.on('validate', function(preParseData){
         
@@ -46,7 +46,8 @@ io.on('connection', function(socket){
                 if(data == result.rows[0].userid){
                     access = true;
                     console.log('Access is verified');
-                    currUser = JSON.parse(data).name;
+                    currUser = data;
+                    console.log(data);
                     if(result.rows[0].mngr == true){
                         mngr = true;
                         socket.emit('accessGrant', true);
@@ -84,22 +85,6 @@ io.on('connection', function(socket){
                     openOrderNums.push(result.rows[i].ordernum);
                 }
                 socket.emit('openOrdersDump', openOrderNums);
-            });
-        }
-    });
-    socket.on('getOpenOrdersAfterComplete', function(preParseData){
-        if(access == true){
-            var data = JSON.parse(preParseData);
-            var getOpenOrdersQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}' AND complete = false ORDER BY ordernum ASC`);
-            myClient.query(getOpenOrdersQuery, function(err,result){
-                if(err){console.log(err)};
-                // console.log(result.rows);
-                var openOrderNums = [];
-                for(var i=0; i<result.rows.length; i++){
-                    openOrderNums.push(result.rows[i].ordernum);
-                }
-                socket.emit('openOrdersDumpAfterComplete', openOrderNums);
             });
         }
     });
@@ -214,22 +199,26 @@ io.on('connection', function(socket){
             })
         }
     });
-    socket.on('submitPayment', function(dataArray){
+    socket.on('submitPayment', function(preParseData){
         if(access == true){
-
+            var data = JSON.parse(preParseData);
+            var orderPaidCmd = format(`UPDATE orderhistory SET finalized = true WHERE ordernum='${data.data}'`);
+            myClient.query(orderPaidCmd, function(err,result){
+                if(err){
+                    console.log(err);
+                } else {
+                    socket.emit('finalizedConf');
+                }
+            });
         }
     });
-    socket.on('finalizeOrder', function(date, orderNum){
-        if(access == true){
-            // sql get order and edit
-        }
-    });
+    
     // Manager-only items follow...
     socket.on('getOrderHistory', function(preParseData){
         if(access == true && mngr == true){
             var data = JSON.parse(preParseData);
             var getOrderHistQuery = format(`SELECT * FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
-                                        AND day = '${data.day}'`);
+                                        AND day = '${data.day}' ORDER BY ordernum ASC`);
             myClient.query(getOrderHistQuery, function(err,result){
                 if(err){console.log(err)};
                 console.log(result.rows);
@@ -237,9 +226,81 @@ io.on('connection', function(socket){
             });
         }
     });
-    socket.on('addUser', function(data){
+    socket.on('addUser', function(preParseData){
         if(access == true && mngr == true){
+            var data = JSON.parse(preParseData);
+            var addNewUserCmd = format(`INSERT INTO users (userid, name, mngr) VALUES ('${data.data.userId}','${data.data.name}',${data.data.mngr})`);
+            myClient.query(addNewUserCmd, function(err,result){
+                if(err){
+                    console.log(err);
+                } else {
+                    socket.emit('userAddComplete');
+                }
+            });
             // using attached object, will create new user in database.
+            // data.userId  data.name   data.mngr
+            
+        }
+    });
+    socket.on('removeUser', function(preParseData){
+        if(access == true && mngr == true){
+            var data = JSON.parse(preParseData);
+            var removeUserCmd = format(`DELETE FROM users WHERE userid='${data.data}'`);
+            if(data.data != currUser){
+                myClient.query(removeUserCmd, function(err,result){
+                    if(err){
+                        console.log(err);
+                    } else {
+                        socket.emit('userRemoveVerify');
+                    }
+                });
+            } else {
+                socket.emit('removeSelfDeny');
+            }
+        }
+    });
+    socket.on('getUsers', function(){
+        if(access == true && mngr == true){
+            var getUsersQuery = format('SELECT * from users');
+            myClient.query(getUsersQuery, function(err,result){
+                if(err){
+                    console.log(err)
+                } else {
+                    console.log('current user dump emitted');
+                    socket.emit('currentUsersDump', result.rows);
+                }
+            });
+        }
+    });
+    socket.on('userIdSubmit', function(preParseData){
+        if(access == true && mngr == true){
+            var data = JSON.parse(preParseData);
+            console.log(data);
+            var userIdQuery = format(`SELECT userid FROM users WHERE userid='${data.data.userId}'`);
+            myClient.query(userIdQuery, function(err,result){
+                if(err){
+                    console.log(err);
+                    socket.emit('userIdValidate', -1);
+                } else {
+                    if(result.rows.length > 0){
+                        socket.emit('userIdValidate', false);
+                        console.log('validation unsuccessful for id...');
+                    } else {
+                        var addNewUserCmd = format(`INSERT INTO users (userid, name, mngr) VALUES ('${data.data.userId}','${data.data.name}',${data.data.mngr})`);
+                        myClient.query(addNewUserCmd, function(err,result){
+                            if(err){
+                                console.log(err);
+                                socket.emit('userIdValidate', -2)
+                            } else {
+                                socket.emit('userIdValidate', true);
+                                console.log('validation successful for id...');
+                            }
+                            
+                        });
+                        
+                    }
+                }
+            });
         }
     });
     

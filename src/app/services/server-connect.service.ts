@@ -44,6 +44,7 @@ export class ServerConnectService {
         this.socket.emit(event, JSON.stringify({"data": data, "year": year, "month": month, "day": day}));
       }
       else{
+        console.log(JSON.stringify({"data": data}));
         this.socket.emit(event, JSON.stringify({"data": data}));
       }
     }
