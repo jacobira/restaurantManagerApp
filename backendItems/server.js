@@ -140,7 +140,6 @@ io.on('connection', function(socket){
             var getMenuItemsQuery = format('SELECT * FROM menuitems');
             myClient.query(getMenuItemsQuery, function(err,result){
                 if(err){console.log(err)};
-                console.log(result.rows);
                 var menuItems = JSON.stringify(result.rows);
                 socket.emit('menuItemsDump', menuItems);
             });   
@@ -153,9 +152,7 @@ io.on('connection', function(socket){
     });
     socket.on('submitOrder', function(preParseData){
         if(access == true){
-            // console.log("This is the pre parse data:" + preParseData);
             var data = JSON.parse(preParseData);
-            console.log(data);
             var newNum = 0;
     
             var getUsedNumsQuery = format(`SELECT ordernum FROM orderhistory WHERE year = '${data.year}' AND month = '${data.month}'
@@ -163,11 +160,9 @@ io.on('connection', function(socket){
             myClient.query(getUsedNumsQuery, function(err,result){
                 if(err){console.log("There was an error with getting info from DB: " + err)};
                 var highestNum = 0;
-                console.log('query got a result');
                 for(var i=0; i<result.rows.length; i++){
                     if(result.rows[i].ordernum > highestNum){
                         highestNum = result.rows[i].ordernum;
-                        console.log('Conditional being used');
                     }
                 }
                 newNum = ++highestNum;
@@ -181,11 +176,12 @@ io.on('connection', function(socket){
             });
         }
     });
-    socket.on('editOrder', function(data){
-        if(access == true){
-            // sql get order and edit
-        }
-    });
+
+    // Edit order functionality slated for future release...
+    // socket.on('editOrder', function(data){
+    //     
+    // });
+
     socket.on('completeOrder', function(preParsedData){
         if(access == true){
             // sql get order and edit
@@ -194,7 +190,6 @@ io.on('connection', function(socket){
                                         AND month='${data.month}' AND day='${data.day}'`);
             myClient.query(completeOrderStatement, function(err, result){
                 if(err){console.log(err)};
-                console.log(result);
                 socket.emit('orderMarkedComplete');
             })
         }
@@ -221,7 +216,6 @@ io.on('connection', function(socket){
                                         AND day = '${data.day}' ORDER BY ordernum ASC`);
             myClient.query(getOrderHistQuery, function(err,result){
                 if(err){console.log(err)};
-                console.log(result.rows);
                 socket.emit('orderHistoryDump', result.rows);
             });
         }
@@ -237,9 +231,6 @@ io.on('connection', function(socket){
                     socket.emit('userAddComplete');
                 }
             });
-            // using attached object, will create new user in database.
-            // data.userId  data.name   data.mngr
-            
         }
     });
     socket.on('removeUser', function(preParseData){
@@ -266,7 +257,6 @@ io.on('connection', function(socket){
                 if(err){
                     console.log(err)
                 } else {
-                    console.log('current user dump emitted');
                     socket.emit('currentUsersDump', result.rows);
                 }
             });
@@ -275,7 +265,6 @@ io.on('connection', function(socket){
     socket.on('userIdSubmit', function(preParseData){
         if(access == true && mngr == true){
             var data = JSON.parse(preParseData);
-            console.log(data);
             var userIdQuery = format(`SELECT userid FROM users WHERE userid='${data.data.userId}'`);
             myClient.query(userIdQuery, function(err,result){
                 if(err){
@@ -295,9 +284,7 @@ io.on('connection', function(socket){
                                 socket.emit('userIdValidate', true);
                                 console.log('validation successful for id...');
                             }
-                            
                         });
-                        
                     }
                 }
             });

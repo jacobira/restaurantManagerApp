@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class NewOrderComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket, private router: Router) {
+
+    // Listeners and initial component-build commands follow...
     this.socket.emit('getMenuItems');
     this.socket.on('menuItemsDump', (preParseData)=>{
       console.log('menu items dump received');
@@ -58,6 +60,7 @@ export class NewOrderComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Function called when an item on the menu is clicked on...
   addToOrder(name, price, build){
     this.orderBuild.push({
       "name": name,
@@ -75,15 +78,13 @@ export class NewOrderComponent implements OnInit {
     console.log(name);
   }
 
+  // Function called when Submit button clicked...
   submitOrder(){
-    // let orderBuildToShip: any[] = [];
-    // this.orderBuild.forEach(function(item){
-    //   orderBuildToShip.push(JSON.stringify(item));
-    // });
     this.serverConnect.toServer("submitOrder", JSON.stringify(this.orderBuild), this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
     this.router.navigate(["/","frontHouse"]);
   }
 
+  // Function called when Remove button on individual item is clicked...
   removeItem(item){
     for(let i=0; i<this.orderBuild.length; i++){
       if(this.orderBuild[i].itemNum == item){
@@ -93,6 +94,7 @@ export class NewOrderComponent implements OnInit {
     }
   }
 
+  // Component attributes follow...
   idCounter: number = 1;
 
   currentMenu: any[] = [];

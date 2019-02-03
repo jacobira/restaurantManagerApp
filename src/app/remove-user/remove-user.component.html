@@ -6,7 +6,10 @@
           Users in System:
         </div>
       </div>
+
       <div class="usersSec">
+
+        <!-- Viewport for display of all users in system -->
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="singleUser" *ngFor="let user of currentUsers" id="singleUser">
             <div class="singleUserBox" id="{{user.userid}}" (click)="selectUser(user.userid)"> 
@@ -19,7 +22,10 @@
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
+
       </div>
+
+      <!-- Section for removal button and mngr page return access button -->
       <div class="removeSec">
         <div class="removeBtn" (click)="removeUser()">
           <div>

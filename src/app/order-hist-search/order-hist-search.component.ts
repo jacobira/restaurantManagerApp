@@ -10,6 +10,8 @@ import { Socket } from 'ngx-socket-io';
 export class OrderHistSearchComponent implements OnInit {
 
   constructor(private socket: Socket, private serverConnect: ServerConnectService) { 
+
+    // Listeners and initial component-build commands follow...
     for(let a=1; a<=31; a++){
       if(a<10){
         this.days.push("0" + a + "");
@@ -33,6 +35,7 @@ export class OrderHistSearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Component attributes follow...
   orderHistoryResult: any[] = [];
   viewedOrderItems: any[] = [];
 
@@ -44,10 +47,12 @@ export class OrderHistSearchComponent implements OnInit {
   selectedMonth: string = this.months[0];
   selectedYear: string = this.years[0];
 
+  // Function called when query criteria are submitted...
   orderHistSearch(){
     this.serverConnect.toServer('getOrderHistory', -1, this.selectedYear, this.selectedMonth, this.selectedDay);
   }
 
+  // Function called when specific order number is clicked on...
   viewOrder(orderNum){
     for(let i=0; i<this.orderHistoryResult.length; i++){
       if(this.orderHistoryResult[i].ordernum == orderNum){

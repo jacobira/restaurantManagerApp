@@ -1,10 +1,15 @@
 <div class="container">
   <div class="left">
+
     <div class="menuItemBox">
+
+      <!-- Burger category -->
       <div class="category" id="burgers">
         <div class="label">
           Burgers
         </div>
+
+        <!-- Viewport displaying category menu options -->
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of burgersItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
@@ -15,12 +20,16 @@
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
+
       </div>
 
+      <!-- Salad category -->
       <div class="category" id="salads">
         <div class="label">
           Salads
         </div>
+
+        <!-- Viewport displaying category menu options -->
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of saladsItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
@@ -33,6 +42,7 @@
         </cdk-virtual-scroll-viewport>
       </div>
 
+      <!-- Side category -->
       <div class="category" id="sides">
         <div class="label">
           Sides
@@ -47,12 +57,16 @@
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
+
       </div>
 
+      <!-- Beverage category -->
       <div class="category" id="beverages">
         <div class="label">
           Beverages
         </div>
+
+        <!-- Viewport displaying category menu options -->
         <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
           <div class="item" *ngFor="let item of beveragesItems" (click)="addToOrder(item.name, item.price, item.build)">
             <div class="itemName">
@@ -60,13 +74,17 @@
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
+
       </div>
 
     </div>
   </div>
 
   <div class="right">
+
     <div class="top">
+
+      <!-- Viewport displaying current contents of order being built -->
       <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
         <div class="item" *ngFor="let item of orderBuild">
           <div class="itemBox">
@@ -87,21 +105,31 @@
           </div>
         </div>
       </cdk-virtual-scroll-viewport>
+
     </div> 
+
     <div class="bottom">
       <div class="bottomLeft">
+
+        <!-- Button for order submission -->
         <div class="submitBtn" (click)="submitOrder()">
           <div>
             Submit
           </div>
         </div>
+
+        <!-- Button for order cancellation/nav back to original front house page -->
         <div class="cancelBtn" routerLink="/frontHouse">
           <div>
             Cancel
           </div>
         </div>
+
       </div>
+
       <div class="bottomRight">
+
+        <!-- Section for display of totals -->
         <div class="totalsBox">
           <div class="totals">
             <div>
@@ -112,6 +140,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>

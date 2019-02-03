@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket, private router: Router) {
+
+    // Listeners and initial component-build commands follow...
     this.socket.on("accessGrant", (mngr)=>{
       this.serverConnect.validated = true;
       if(mngr == true){
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Function called when 'Enter' button clicked on...
   submitIdInput(id){
     this.serverConnect.toServer("validate", id);
   }

@@ -20,6 +20,7 @@ export class ServerConnectService {
     let date = new Date();
 
     // ***comment out the following code to test sample orders from sample date 2019 JAN 01...
+
     // this.currYear = `${date.getFullYear()}`;
     // let monthNum = date.getMonth();
     // let monthConversions = [{'num': 0, 'month': 'JAN'},{'num': 1, 'month': 'FEB'},{'num': 2, 'month': 'MAR'},
@@ -33,6 +34,7 @@ export class ServerConnectService {
     // };
     // this.currDay = `${date.getDate()}`;
     // console.log(`${this.currYear} ${this.currMonth} ${this.currDay}`);
+    
     // ***(end of code to comment out for sample order and date usage)
   }
 

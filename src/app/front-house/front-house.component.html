@@ -18,6 +18,7 @@
           </div>
         </div>
       </div>
+      <!-- unpaid orders viewport -->
       <cdk-virtual-scroll-viewport class="viewport" itemSize="50">
         <div class="singleOrder" *cdkVirtualFor="let order of unpaidOrders">
           <div class="box" id="{{order}}" (click)="viewOrder(order)">
@@ -27,10 +28,13 @@
           </div>
         </div>
       </cdk-virtual-scroll-viewport>
+
     </div>
 
     <div class="right">
       <div class="orderDetailsBox">
+
+        <!-- viewport for details of selected order -->
         <cdk-virtual-scroll-viewport class="detailsViewport" itemSize="50">
           <div class="orderHeader">
             <div class="numberBox">Order #{{viewedOrder}}</div>
@@ -49,6 +53,7 @@
             </div>
           </div>
         </cdk-virtual-scroll-viewport>
+        
       </div>
       <div class="orderPymtBox">
 

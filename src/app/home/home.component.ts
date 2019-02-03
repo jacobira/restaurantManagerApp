@@ -15,13 +15,12 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    this.user = this.serverConnect.currUser;
+  
   }
 
+  // Function called on click to access kitchen page...
   getOpenOrders(){
     this.serverConnect.toServer('getOpenOrders', -1, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
-
-  user: string;
   
 }

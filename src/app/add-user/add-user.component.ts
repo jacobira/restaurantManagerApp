@@ -15,11 +15,12 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Component attributes follow...
   nameInputValue: string = '';
   userIdInputValue: string = '';
   mngrAuthValue: boolean = false;
 
-
+  // Function called on submission of overall form to verify availability of userid and creation of new user in backend...
   userIdCheck(){
     this.serverConnect.toServer("userIdSubmit", {"name": this.nameInputValue,"userId": this.userIdInputValue,"mngr": this.mngrAuthValue});
     this.socket.on("userIdValidate", (data)=>{
@@ -40,9 +41,4 @@ export class AddUserComponent implements OnInit {
       }
     })
   }
-
-  submitUserInfo(){
-    this.serverConnect.toServer("addUser", {"name": this.nameInputValue, "userId": this.userIdInputValue, "mngr": this.mngrAuthValue});
-  }
-
 }

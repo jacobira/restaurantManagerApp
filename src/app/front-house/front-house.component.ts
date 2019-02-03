@@ -10,6 +10,8 @@ import { Socket } from 'ngx-socket-io';
 export class FrontHouseComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket) { 
+
+    // Listeners and initial component build commands follow...
     this.socket.on('orderDetailsDump', (data)=>{
       console.log(data);
       if(data !== null){
@@ -75,6 +77,7 @@ export class FrontHouseComponent implements OnInit {
     this.setRefresh();
   }
   
+  // Component attributes follow...
   firstLoad: boolean = true;
 
   unpaidOrders: string[] = [];
@@ -96,15 +99,18 @@ export class FrontHouseComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Function called when an order is clicked on...
   viewOrder(orderNum){
     console.log(orderNum);
     this.serverConnect.toServer('getOrderDetails', orderNum, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 
+  // Function called when order is marked as paid for by front house staff...
   orderPaid(){
     this.serverConnect.toServer('submitPayment', this.viewedOrder);
   }
 
+  // Function keeping viewport of unpaid orders constantly updated...
   setRefresh(){
     clearTimeout(this.refreshFnc);
     this.refreshFnc = window.setInterval(()=>{

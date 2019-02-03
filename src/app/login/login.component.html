@@ -1,11 +1,18 @@
 <div class="wrapper">
   <div class="content">
+
+    <!-- Section for user id entry -->
     <div class="entry">
       <div class="label">
         Employee ID Number
       </div>
+
+      <!-- Input box for entry of user id -->
       <input [(ngModel)]="idInput" id="inputBox">
+
     </div>
+
+    <!-- Section for submitting of id for log in verification -->
     <div class="submit">
       <div class="btn" (click)="submitIdInput(idInput)">
         <div class="btnText">
@@ -13,10 +20,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Notice to display if invalid information entered/log in denied -->
     <div class="notify">
       <div class="incorrect hidden" id="incorrect">
         Invalid Information Entered
       </div>
     </div>
+
   </div>
 </div>

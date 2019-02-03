@@ -1,13 +1,17 @@
 <div class="content">
   <div class="infoBox">
+
+    <!-- Section for name entry -->
     <div class="nameSec Sec">
       <div>
         <div class="title">
             Full Name
-          </div>
-          <input id="nameInput" [(ngModel)]="nameInputValue">
         </div>
+        <input id="nameInput" [(ngModel)]="nameInputValue">
       </div>
+    </div>
+
+    <!-- Section for userid entry -->
     <div class="userIdSec">
       <div>
         <div class="title">
@@ -21,6 +25,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Section for manaager permissions selection -->
     <div class="mngrAuthSec Sec">
       <div>
         <div class="title">
@@ -32,6 +38,8 @@
         </select>
       </div>
     </div>
+
+    <!-- Section for submit button -->
     <div class="submitSec Sec">
       <div class="submitBtn btn" (click)="userIdCheck()">
         <div class="label">
@@ -44,5 +52,6 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>

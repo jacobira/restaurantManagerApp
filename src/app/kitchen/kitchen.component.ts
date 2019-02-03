@@ -11,6 +11,7 @@ export class KitchenComponent implements OnInit {
 
   constructor(private serverConnect: ServerConnectService, private socket: Socket) {
 
+    // Listeners and component-build commands follow...
     this.socket.on('openOrdersDump', (data)=>{
 
       if(this.openOrders.length == 0){
@@ -39,7 +40,6 @@ export class KitchenComponent implements OnInit {
           document.getElementById('completeBtn').classList.remove('faded');
         }
       }
-      // console.log(this.openOrders);
       if(this.firstLoad){
         this.viewOrder(this.openOrders[0]);
         this.firstLoad = false;
@@ -69,6 +69,7 @@ export class KitchenComponent implements OnInit {
     this.setRefresh();
   }
 
+  // Component attributes follow...
   firstLoad: boolean = true;
 
   openOrders: string[] = [];
@@ -83,15 +84,18 @@ export class KitchenComponent implements OnInit {
 
   }
 
+  // Function called when an order is clicked on...
   viewOrder(orderNum){
     this.serverConnect.toServer('getOrderDetails', orderNum, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 
+  // Function called when an order is marked as completed by the kitchen...
   completeOrder(){
    
     this.serverConnect.toServer('completeOrder', this.viewedOrderNum, this.serverConnect.currYear, this.serverConnect.currMonth, this.serverConnect.currDay);
   }
 
+  // Function keeping list of open orders constantly updated...
   setRefresh(){
     clearTimeout(this.refreshFnc);
     this.refreshFnc = window.setInterval(()=>{
