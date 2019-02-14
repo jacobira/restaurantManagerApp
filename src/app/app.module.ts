@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     RemoveUserComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     BrowserModule,
     FormsModule,
     SocketIoModule.forRoot(config),
