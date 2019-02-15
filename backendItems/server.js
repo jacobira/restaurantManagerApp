@@ -7,10 +7,14 @@ var io = require('socket.io')(server, {'pingInterval': 2000, 'pingTimeout': 8640
 // PostgreSQL database imports and definitions here...
 var pg = require('pg'); //postgreSQL database
 var format = require('pg-format');
-var PGUSER = 'power_user';
+var PGHOST = 'efficient-mtech.ce9o1t6gujej.us-east-2.rds.amazonaws.com';
+var PGUSER = 'jacobbaldwin';
 var PGDATABASE = 'efficient';
+var PGPASSWORD = 'jjrhmjbb7';
 var dbConfig = {
+    host: PGHOST,
     user: PGUSER,
+    password: PGPASSWORD,
     database: PGDATABASE,
     max: 10,
     idleTimeoutMillis: 30000
