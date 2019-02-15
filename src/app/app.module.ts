@@ -22,7 +22,7 @@ import { RemoveUserComponent } from './remove-user/remove-user.component';
 
 // if accessing database remotely during development...
 // const config: SocketIoConfig = {url: 'http://52.15.149.88', options: {}};
-const config: SocketIoConfig = {url: 'http://www.raspberryfactory.com:3333', options: {}};
+const config: SocketIoConfig = {url: 'http://www.raspberryfactory.com/socket.io/', options: {}};
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
